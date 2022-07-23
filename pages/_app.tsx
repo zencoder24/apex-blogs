@@ -6,9 +6,9 @@ import { themeChange } from 'theme-change'
 
 function MyApp({ Component, pageProps }: AppProps) {
   
-  // useEffect(() => {
-  //   themeChange(false)
-  // })
+  useEffect(() => {
+    themeChange(false)
+  })
   return(
       <Component {...pageProps} />
   ) 

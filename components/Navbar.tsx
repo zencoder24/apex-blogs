@@ -9,7 +9,7 @@ const Navbar = () => {
     const [darkMode, setDarkMode] = useState(false);
 
     return (
-        <div className="flex py-4 px-4 justify-between items-center bg-red-600">
+        <div className="flex py-4 px-4 justify-between items-center bg-base-100">
 
 
             <div className='flex-row flex space-x-4 items-center'>
@@ -41,8 +41,8 @@ const Navbar = () => {
             <div className='flex flex-col items-center gap-2 cursor-pointer'>
                 <button 
                     className={`${darkMode ? 'block' : 'hidden'} `}
-                    // data-set-theme="retro" 
-                    // data-act-class="ACTIVECLASS"
+                    data-set-theme="apexAlpha" 
+                    data-act-class="ACTIVECLASS"
                     onClick={() => setDarkMode(false)}>
                     <FontAwesomeIcon 
                         className='h-5 w-5'
@@ -50,8 +50,8 @@ const Navbar = () => {
                     />
                 </button>
                 <button 
-                    // data-set-theme="aqua" 
-                    // data-act-class="ACTIVECLASS"
+                    data-set-theme="apexBeta" 
+                    data-act-class="ACTIVECLASS"
                     className={`${darkMode ? 'hidden' : 'block'} `}
                     onClick={() => setDarkMode(true)}>
                     <FontAwesomeIcon 
