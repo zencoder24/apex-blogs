@@ -9,7 +9,7 @@ const Navbar = () => {
     const [darkMode, setDarkMode] = useState(false);
 
     return (
-        <div className="flex py-4 px-4 justify-between items-center bg-base-100">
+        <div className="flex py-4 px-4 justify-between items-center bg-base-100 shadow-lg">
 
 
             <div className='flex-row flex space-x-4 items-center'>

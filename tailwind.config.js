@@ -12,7 +12,7 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        apexAlpha: {
+        apexBeta: {
           primary: "#2b2d42",
           secondary: "#8d99ae",
           accent: "#ef233c",
@@ -21,7 +21,7 @@ module.exports = {
         },
       },
       {
-        apexBeta: {
+        apexAlpha: {
           primary: "#ffffff",
           secondary: "#3b413c",
           accent: "#9db5b2",
