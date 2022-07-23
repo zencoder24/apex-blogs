@@ -1,24 +1,76 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import {faNewspaper, faPencil, faSun, faMoon, faList } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import  ApexLogo  from '../assets/logo_the_web_apex.svg';
+
 
 const Navbar = () => {
+    const [darkMode, setDarkMode] = useState(false);
+
     return (
-        <div className="navbar bg-base-100">
-        <div className="navbar-start">
-          <a href="">Latest</a>
-        </div>
-        <div className="navbar-center">
-          <a className="btn btn-ghost normal-case text-xl"> The Apex Blog</a>
-        </div>
-        <div className="navbar-end">
-          <button className="btn btn-ghost btn-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-          </button>
-          <button className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-              <span className="badge badge-xs badge-primary indicator-item"></span>
+        <div className="flex py-4 px-4 justify-between items-center bg-red-600">
+
+
+            <div className='flex-row flex space-x-4 items-center'>
+                <div className=" cursor-pointer flex md:flex-col items-center gap-2">
+                    <FontAwesomeIcon icon={faNewspaper} className="h-5 w-5"/>
+                    <p className='hidden md:block font-bold'>Latest</p> 
+                </div>
+                <div className="dropdown">
+                    <label tabIndex={0} className="cursor-pointer flex md:flex-col items-center gap-2">
+                        <FontAwesomeIcon icon={faList} className="h-5 w-5"/>
+                        <p  className='hidden md:block font-bold'>Categories</p>
+                    </label>
+                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><a>Life and Code</a></li>
+                        <li><a>React</a></li>
+                        <li><a>Git</a></li>
+                    </ul>
+                </div>
             </div>
-          </button>
+
+
+        <div className="navbar-center">
+            <ApexLogo className="h-12 w-36 md:h-16"/>
+          {/* <a className="btn btn-ghost normal-case text-xl"> The Apex Blog</a> */}
+        </div>
+
+
+        <div className="flex flex-row space-x-4 items-center">
+            <div className='flex flex-col items-center gap-2 cursor-pointer'>
+                <button 
+                    className={`${darkMode ? 'block' : 'hidden'} `}
+                    // data-set-theme="retro" 
+                    // data-act-class="ACTIVECLASS"
+                    onClick={() => setDarkMode(false)}>
+                    <FontAwesomeIcon 
+                        className='h-5 w-5'
+                        icon={faSun} 
+                    />
+                </button>
+                <button 
+                    // data-set-theme="aqua" 
+                    // data-act-class="ACTIVECLASS"
+                    className={`${darkMode ? 'hidden' : 'block'} `}
+                    onClick={() => setDarkMode(true)}>
+                    <FontAwesomeIcon 
+                        className='h-5 w-5'
+                        icon={faMoon}
+                    />
+                </button>
+                <p className='hidden md:block font-bold' >Theme</p>
+            </div>
+             
+
+           <div className='flex flex-col gap-2 items-center cursor-pointer'>
+            <button className="">
+                <div className="">
+                    <FontAwesomeIcon icon={faPencil} className="h-5 w-5"/>
+                </div>
+            </button>
+            <p className='hidden md:block font-bold'>Sign-up</p>
+          </div> 
         </div>
       </div>
     );
