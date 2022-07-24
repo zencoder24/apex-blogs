@@ -22,8 +22,8 @@ module.exports = {
       },
       {
         apexAlpha: {
-          primary: "#ffffff",
-          secondary: "#3b413c",
+          secondary: "#ffffff",
+          primary: "#3b413c",
           accent: "#9db5b2",
           neutral: "#daf0ee",
           "base-100": "#94d1be",

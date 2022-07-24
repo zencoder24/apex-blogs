@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import {faNewspaper, faPencil, faSun, faMoon, faList } from '@fortawesome/free-solid-svg-icons';
+import {faNewspaper, faPencil, faSun, faMoon, faList, faFire, faLeaf } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import  ApexLogo  from '../assets/logo_the_web_apex.svg';
 
@@ -33,7 +33,6 @@ const Navbar = () => {
 
         <div className="navbar-center">
             <ApexLogo className="h-12 w-36 md:h-16"/>
-          {/* <a className="btn btn-ghost normal-case text-xl"> The Apex Blog</a> */}
         </div>
 
 
@@ -46,7 +45,7 @@ const Navbar = () => {
                     onClick={() => setDarkMode(false)}>
                     <FontAwesomeIcon 
                         className='h-5 w-5'
-                        icon={faSun} 
+                        icon={faLeaf} 
                     />
                 </button>
                 <button 
@@ -56,7 +55,7 @@ const Navbar = () => {
                     onClick={() => setDarkMode(true)}>
                     <FontAwesomeIcon 
                         className='h-5 w-5'
-                        icon={faMoon}
+                        icon={faFire}
                     />
                 </button>
                 <p className='hidden md:block font-bold' >Theme</p>
