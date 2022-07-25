@@ -14,7 +14,7 @@ const LatestBlogs = ({blogs}:any) => {
         })
     }
     return (
-        <div className='flex flex-col lg:flex-row lg:items-baseline lg:gap-12 lg:justify-around  space-y-36 mt-24 justify-center items-center p-8 '>
+        <div className='flex flex-col lg:flex-row lg:items-baseline lg:gap-12 lg:justify-around  space-y-36  justify-center items-center p-8 '>
          {renderBlogCards()}
         </div>
     );
