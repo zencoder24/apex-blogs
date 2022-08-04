@@ -10,7 +10,7 @@ const Home: NextPage = ({blogs}:any) => {
   return (
    
     <div className=' font-raleway'>
-      <HomeHead pageSubHead="Latest"/>
+      <HomeHead pageSubHead="Latest Blogs"/>
       <LatestBlogs blogs={blogs}/>
     </div>
   )
