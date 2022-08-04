@@ -13,13 +13,16 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@types/markdown-it": "^12.2.3",
     "axios": "^0.27.2",
     "babel-plugin-inline-react-svg": "^2.0.1",
     "daisyui": "^2.19.1",
     "eslint-import-resolver-typescript": "^3.3.0",
+    "markdown-it": "^13.0.1",
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-markdown": "^8.0.3",
     "theme-change": "^2.1.0"
   },
   "devDependencies": {

@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const BlogCard = ({blog}:any) => {
     return (
@@ -20,7 +21,13 @@ const BlogCard = ({blog}:any) => {
                     <h2 className='text-slate-400 font-semibold'>Writen by: {blog.attributes.author.data.attributes.Author}</h2>
                 </div>
                 <p className='description mb-8 text-md font-medium leading-[1.45] text-[#333] '>{blog.attributes.description}</p>
-                <a className=' relative border-none outline-none bg-gradient-to-r from-primary to-accent py-4 px-6 rounded-[50px] text-white text-lg shadow-[1px_10px_2rem_rgba(255, 94, 98, 0.5)] transition-all no-underline ' href="#" target="_blank">Read More</a>
+                <Link
+                    href={`/blogs/${blog.attributes.slug}`} 
+                    target="_blank">
+                        <div  className=' cursor-pointer relative w-1/3 text-center border-none outline-none bg-gradient-to-r from-primary to-accent py-4 px-6 rounded-[50px] text-white text-lg shadow-[1px_10px_2rem_rgba(255, 94, 98, 0.5)] transition-all no-underline '>
+                        Read More
+                        </div>
+                </Link>
             </div>
         </div>
     );

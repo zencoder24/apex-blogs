@@ -5,7 +5,7 @@ import LatestBlogs from '../components/LatestBlogs'
 
 
 const Home: NextPage = ({blogs}:any) => {
-  console.log(blogs)
+  
   
   return (
    

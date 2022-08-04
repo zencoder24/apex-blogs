@@ -1,16 +1,17 @@
 import { NextPage, GetStaticProps } from 'next';
-import HomeHead from '../components/HomeHead';
+import HomeHead from '../../components/HomeHead';
 import axios from 'axios';
 import React from 'react';
-import AllBlogs from '../components/AllBlogs';
+import AllBlogs from '../../components/AllBlogs';
 
 const Blog: NextPage = ({blogs}:any) => {
+    console.log(blogs)
     return (
         <div>
             <HomeHead pageSubHead="All Blogs"/>
            <AllBlogs blogs={blogs}/>
         </div>
-    );
+    ); 
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
