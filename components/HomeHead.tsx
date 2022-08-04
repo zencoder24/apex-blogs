@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HomeHead = () => {
+const HomeHead = ({pageSubHead}:any) => {
     return (
         <div className='text-left md:text-center ml-6 mt-20 mb-12 md:ml-0 w-full'>
             <p className='text-xl font-bold'>Apex-Blogs</p>
@@ -9,6 +9,7 @@ const HomeHead = () => {
                 <span className='block lg:inline'>Code.</span>
                 <span className='block lg:inline'>Learn.</span>
             </h1>
+            <h2 className=' text-4xl font-bold italic my-4'>{pageSubHead}</h2>
         </div>
     );
 };
