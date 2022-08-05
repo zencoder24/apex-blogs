@@ -1,76 +1,32 @@
 import React, { useState } from 'react';
-
-import {faNewspaper, faPencil, faSun, faMoon, faList, faFire, faLeaf } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import  ApexLogo  from '../assets/logo_the_web_apex.svg';
+import Link from 'next/link';
 
+
+const categories = [{name: 'React', slug: 'react'}, {name: "Git", slug:'git'}, {name:'Life and Code', slug:'life-and-code'}]
 
 const Navbar = () => {
-    const [darkMode, setDarkMode] = useState(false);
-
     return (
-        <div className="flex py-4 px-4 justify-between items-center bg-base-100 shadow-lg">
+        <div className="flex py-4 px-4 navbar bg-black/10 shadow-lg">
 
+        <div className=" flex-1">
+            <Link href='/'>
+                <ApexLogo className="h-12 w-36 cursor-pointer md:h-16"/>
+            </Link>
+        </div>       
 
-            <div className='flex-row flex space-x-4 items-center'>
-                <div className=" cursor-pointer flex md:flex-col items-center gap-2">
-                    <FontAwesomeIcon icon={faNewspaper} className="h-5 w-5"/>
-                    <p className='hidden md:block font-bold'>Latest</p> 
-                </div>
-                <div className="dropdown">
-                    <label tabIndex={0} className="cursor-pointer flex md:flex-col items-center gap-2">
-                        <FontAwesomeIcon icon={faList} className="h-5 w-5"/>
-                        <p  className='hidden md:block font-bold'>Categories</p>
-                    </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a>Life and Code</a></li>
-                        <li><a>React</a></li>
-                        <li><a>Git</a></li>
-                    </ul>
-                </div>
+        <div className="flex-none">
+            <div className="menu menu-horizontal text-black space-x-6">
+               {categories.map((category) => (
+                    <Link key={category.slug} href={`/category/${category.slug}`}>
+                        <span className=' cursor-pointer font-bold text-lg'>
+                            {category.name}
+                        </span>
+                    </Link>
+               ))}
             </div>
-
-
-        <div className="navbar-center">
-            <ApexLogo className="h-12 w-36 md:h-16"/>
         </div>
 
-
-        <div className="flex flex-row space-x-4 items-center">
-            <div className='flex flex-col items-center gap-2 cursor-pointer'>
-                <button 
-                    className={`${darkMode ? 'block' : 'hidden'} `}
-                    data-set-theme="apexAlpha" 
-                    data-act-class="ACTIVECLASS"
-                    onClick={() => setDarkMode(false)}>
-                    <FontAwesomeIcon 
-                        className='h-5 w-5'
-                        icon={faLeaf} 
-                    />
-                </button>
-                <button 
-                    data-set-theme="apexBeta" 
-                    data-act-class="ACTIVECLASS"
-                    className={`${darkMode ? 'hidden' : 'block'} `}
-                    onClick={() => setDarkMode(true)}>
-                    <FontAwesomeIcon 
-                        className='h-5 w-5'
-                        icon={faFire}
-                    />
-                </button>
-                <p className='hidden md:block font-bold' >Theme</p>
-            </div>
-             
-
-           <div className='flex flex-col gap-2 items-center cursor-pointer'>
-            <button className="">
-                <div className="">
-                    <FontAwesomeIcon icon={faPencil} className="h-5 w-5"/>
-                </div>
-            </button>
-            <p className='hidden md:block font-bold'>Sign-up</p>
-          </div> 
-        </div>
       </div>
     );
 };

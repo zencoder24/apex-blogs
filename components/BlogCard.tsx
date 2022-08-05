@@ -2,7 +2,7 @@ import React from 'react';
 
 const BlogCard = ({blog}:any) => {
     return (
-        <div>
+        <div className='text-black'>
             {blog.attributes.title}
             {blog.attributes.description}
         </div>

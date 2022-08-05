@@ -8,8 +8,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "
-   Montserrat", sans-serif;
 }
 html:before,
 body:before {
@@ -17,7 +15,7 @@ body:before {
 
   width: 100%;
   height: 100vh;
-  background-image: url("../public/bg.jpg");
+  background-image: linear-gradient(to top right, #1d976c, #93f9b9);
   position: fixed;
   left: 0;
   top: 0;
