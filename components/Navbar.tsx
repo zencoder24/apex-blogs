@@ -7,7 +7,7 @@ const categories = [{name: 'React', slug: 'react'}, {name: "Git", slug:'git'}, {
 
 const Navbar = () => {
     return (
-        <div className="flex py-4 px-4 navbar bg-black/10 shadow-lg">
+        <div className="flex py-4 px-4 navbar bg-teal-800/50 shadow-lg">
 
         <div className=" flex-1">
             <Link href='/'>
