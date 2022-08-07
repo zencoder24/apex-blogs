@@ -16,10 +16,10 @@ const Navbar = () => {
         </div>       
 
         <div className="flex-none">
-            <div className="menu menu-horizontal text-black space-x-6">
+            <div className="menu menu-horizontal space-x-6">
                {categories.map((category) => (
                     <Link key={category.slug} href={`/category/${category.slug}`}>
-                        <span className=' cursor-pointer font-bold text-lg'>
+                        <span className=' cursor-pointer font-bold text-lg text-white'>
                             {category.name}
                         </span>
                     </Link>

@@ -1,0 +1,43 @@
+query GetBlogs {
+  blogs {
+    data {
+      attributes {
+        createdAt
+        slug
+        title
+        description
+        featureImage {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        categories {
+          data {
+            attributes {
+              Name
+              Slug
+            }
+          }
+        }
+        author {
+          data {
+            id
+            attributes {
+              Bio
+              Name
+              Photo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
