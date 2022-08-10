@@ -34,7 +34,7 @@ const RecentBlogsWidget = () => {
                         {moment(blog.attributes.createdAt).format('MMM DD, YYYY')}
                     </p>
                     <Link key={blog.attributes.title} href={`/blog/${blog.attributes.slug}`}>
-                        <p className='hover:underline cursor-pointer'>{blog.attributes.title}</p>
+                        <p className='hover:underline hover:text-slate-900 cursor-pointer'>{blog.attributes.title}</p>
                     </Link>
                 </div>
             </div>
