@@ -86,6 +86,7 @@ export type Blog = {
   featureImage?: Maybe<UploadFileEntityResponse>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   slug: Scalars['String'];
+  tags?: Maybe<Scalars['JSON']>;
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -128,6 +129,7 @@ export type BlogFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<BlogFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
+  tags?: InputMaybe<JsonFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
@@ -141,6 +143,7 @@ export type BlogInput = {
   featureImage?: InputMaybe<Scalars['ID']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   slug?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Scalars['JSON']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -178,6 +181,7 @@ export type Category = {
   Name: Scalars['String'];
   Slug: Scalars['String'];
   blogs?: Maybe<BlogRelationResponseCollection>;
+  cat?: Maybe<Scalars['JSON']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -213,6 +217,7 @@ export type CategoryFiltersInput = {
   Slug?: InputMaybe<StringFilterInput>;
   and?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
   blogs?: InputMaybe<BlogFiltersInput>;
+  cat?: InputMaybe<JsonFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   not?: InputMaybe<CategoryFiltersInput>;
@@ -225,6 +230,7 @@ export type CategoryInput = {
   Name?: InputMaybe<Scalars['String']>;
   Slug?: InputMaybe<Scalars['String']>;
   blogs?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  cat?: InputMaybe<Scalars['JSON']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1236,6 +1242,24 @@ export type GetBlogsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetBlogsQuery = { __typename?: 'Query', blogs?: { __typename?: 'BlogEntityResponseCollection', data: Array<{ __typename?: 'BlogEntity', attributes?: { __typename?: 'Blog', createdAt?: any | null, slug: string, title: string, description?: string | null, featureImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Name: string, Slug: string } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', id?: string | null, attributes?: { __typename?: 'Author', Bio: string, Name: string, Photo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null }> } | null };
 
+export type GetCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCategoriesQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Name: string, Slug: string } | null }> } | null };
+
+export type GetRecentBlogsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRecentBlogsQuery = { __typename?: 'Query', blogs?: { __typename?: 'BlogEntityResponseCollection', data: Array<{ __typename?: 'BlogEntity', attributes?: { __typename?: 'Blog', createdAt?: any | null, slug: string, title: string, featureImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null };
+
+export type GetSimilarBlogsQueryVariables = Exact<{
+  slug: Scalars['String'];
+  tags?: InputMaybe<Scalars['JSON']>;
+}>;
+
+
+export type GetSimilarBlogsQuery = { __typename?: 'Query', blogs?: { __typename?: 'BlogEntityResponseCollection', data: Array<{ __typename?: 'BlogEntity', attributes?: { __typename?: 'Blog', createdAt?: any | null, slug: string, title: string, featureImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null };
+
 
 export const GetBlogsDocument = gql`
     query GetBlogs {
@@ -1309,3 +1333,141 @@ export function useGetBlogsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<G
 export type GetBlogsQueryHookResult = ReturnType<typeof useGetBlogsQuery>;
 export type GetBlogsLazyQueryHookResult = ReturnType<typeof useGetBlogsLazyQuery>;
 export type GetBlogsQueryResult = Apollo.QueryResult<GetBlogsQuery, GetBlogsQueryVariables>;
+export const GetCategoriesDocument = gql`
+    query GetCategories {
+  categories {
+    data {
+      attributes {
+        Name
+        Slug
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCategoriesQuery__
+ *
+ * To run a query within a React component, call `useGetCategoriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCategoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCategoriesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetCategoriesQuery(baseOptions?: Apollo.QueryHookOptions<GetCategoriesQuery, GetCategoriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCategoriesQuery, GetCategoriesQueryVariables>(GetCategoriesDocument, options);
+      }
+export function useGetCategoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCategoriesQuery, GetCategoriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCategoriesQuery, GetCategoriesQueryVariables>(GetCategoriesDocument, options);
+        }
+export type GetCategoriesQueryHookResult = ReturnType<typeof useGetCategoriesQuery>;
+export type GetCategoriesLazyQueryHookResult = ReturnType<typeof useGetCategoriesLazyQuery>;
+export type GetCategoriesQueryResult = Apollo.QueryResult<GetCategoriesQuery, GetCategoriesQueryVariables>;
+export const GetRecentBlogsDocument = gql`
+    query GetRecentBlogs {
+  blogs(sort: "createdAt:desc", pagination: {limit: 3}) {
+    data {
+      attributes {
+        createdAt
+        slug
+        title
+        featureImage {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetRecentBlogsQuery__
+ *
+ * To run a query within a React component, call `useGetRecentBlogsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRecentBlogsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRecentBlogsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetRecentBlogsQuery(baseOptions?: Apollo.QueryHookOptions<GetRecentBlogsQuery, GetRecentBlogsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetRecentBlogsQuery, GetRecentBlogsQueryVariables>(GetRecentBlogsDocument, options);
+      }
+export function useGetRecentBlogsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRecentBlogsQuery, GetRecentBlogsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetRecentBlogsQuery, GetRecentBlogsQueryVariables>(GetRecentBlogsDocument, options);
+        }
+export type GetRecentBlogsQueryHookResult = ReturnType<typeof useGetRecentBlogsQuery>;
+export type GetRecentBlogsLazyQueryHookResult = ReturnType<typeof useGetRecentBlogsLazyQuery>;
+export type GetRecentBlogsQueryResult = Apollo.QueryResult<GetRecentBlogsQuery, GetRecentBlogsQueryVariables>;
+export const GetSimilarBlogsDocument = gql`
+    query GetSimilarBlogs($slug: String!, $tags: JSON) {
+  blogs(
+    filters: {slug: {ne: $slug}, and: {tags: {containsi: $tags}}}
+    pagination: {limit: 3}
+  ) {
+    data {
+      attributes {
+        createdAt
+        slug
+        title
+        featureImage {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetSimilarBlogsQuery__
+ *
+ * To run a query within a React component, call `useGetSimilarBlogsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSimilarBlogsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSimilarBlogsQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *      tags: // value for 'tags'
+ *   },
+ * });
+ */
+export function useGetSimilarBlogsQuery(baseOptions: Apollo.QueryHookOptions<GetSimilarBlogsQuery, GetSimilarBlogsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSimilarBlogsQuery, GetSimilarBlogsQueryVariables>(GetSimilarBlogsDocument, options);
+      }
+export function useGetSimilarBlogsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSimilarBlogsQuery, GetSimilarBlogsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSimilarBlogsQuery, GetSimilarBlogsQueryVariables>(GetSimilarBlogsDocument, options);
+        }
+export type GetSimilarBlogsQueryHookResult = ReturnType<typeof useGetSimilarBlogsQuery>;
+export type GetSimilarBlogsLazyQueryHookResult = ReturnType<typeof useGetSimilarBlogsLazyQuery>;
+export type GetSimilarBlogsQueryResult = Apollo.QueryResult<GetSimilarBlogsQuery, GetSimilarBlogsQueryVariables>;

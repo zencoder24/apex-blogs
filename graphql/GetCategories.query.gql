@@ -1,0 +1,10 @@
+query GetCategories {
+  categories {
+    data {
+      attributes {
+        Name
+        Slug
+      }
+    }
+  }
+}

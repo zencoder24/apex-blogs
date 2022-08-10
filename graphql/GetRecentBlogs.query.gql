@@ -1,0 +1,18 @@
+query GetRecentBlogs {
+  blogs(sort: "createdAt:desc", pagination: { limit: 3 }) {
+    data {
+      attributes {
+        createdAt
+        slug
+        title
+        featureImage {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
