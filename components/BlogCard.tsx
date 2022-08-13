@@ -21,8 +21,8 @@ const BlogCard = ({blog}:any) => {
                     {blog.attributes.title}
                 </Link>
             </h1>
-            <div className='block lg:flex text-center items-center justify-center mb-8 w-full'>
-                <div className='flex items-center justify-center mb-4 lg:mb-0 lg:w-full w-auto mr-8'>
+            <div className='block lg:flex flex-col text-center items-center justify-center mb-8 w-full'>
+                <div className='flex items-center justify-center mb-4 w-auto '>
                     <Image
                         src={ `${process.env.NEXT_PUBLIC_API_URL}${blog.attributes.author.data.attributes.Photo.data.attributes.url}`} 
                         className=' align-middle rounded-full'

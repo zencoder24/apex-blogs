@@ -1237,6 +1237,13 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type GetBlogDetailQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetBlogDetailQuery = { __typename?: 'Query', blogs?: { __typename?: 'BlogEntityResponseCollection', data: Array<{ __typename?: 'BlogEntity', attributes?: { __typename?: 'Blog', createdAt?: any | null, body: string, slug: string, title: string, description?: string | null, featureImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Name: string, Slug: string } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', id?: string | null, attributes?: { __typename?: 'Author', Bio: string, Name: string, Photo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null }> } | null };
+
 export type GetBlogsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1261,6 +1268,80 @@ export type GetSimilarBlogsQueryVariables = Exact<{
 export type GetSimilarBlogsQuery = { __typename?: 'Query', blogs?: { __typename?: 'BlogEntityResponseCollection', data: Array<{ __typename?: 'BlogEntity', attributes?: { __typename?: 'Blog', createdAt?: any | null, slug: string, title: string, featureImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null };
 
 
+export const GetBlogDetailDocument = gql`
+    query GetBlogDetail($slug: String!) {
+  blogs(filters: {slug: {eq: $slug}}) {
+    data {
+      attributes {
+        createdAt
+        body
+        slug
+        title
+        description
+        featureImage {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        categories {
+          data {
+            attributes {
+              Name
+              Slug
+            }
+          }
+        }
+        author {
+          data {
+            id
+            attributes {
+              Bio
+              Name
+              Photo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetBlogDetailQuery__
+ *
+ * To run a query within a React component, call `useGetBlogDetailQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetBlogDetailQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetBlogDetailQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useGetBlogDetailQuery(baseOptions: Apollo.QueryHookOptions<GetBlogDetailQuery, GetBlogDetailQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetBlogDetailQuery, GetBlogDetailQueryVariables>(GetBlogDetailDocument, options);
+      }
+export function useGetBlogDetailLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetBlogDetailQuery, GetBlogDetailQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetBlogDetailQuery, GetBlogDetailQueryVariables>(GetBlogDetailDocument, options);
+        }
+export type GetBlogDetailQueryHookResult = ReturnType<typeof useGetBlogDetailQuery>;
+export type GetBlogDetailLazyQueryHookResult = ReturnType<typeof useGetBlogDetailLazyQuery>;
+export type GetBlogDetailQueryResult = Apollo.QueryResult<GetBlogDetailQuery, GetBlogDetailQueryVariables>;
 export const GetBlogsDocument = gql`
     query GetBlogs {
   blogs {

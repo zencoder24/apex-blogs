@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useGetCategoriesQuery } from '../graphql/generated/schema';
 
 
-const categories = [{name: 'React', slug: 'react'}, {name: "Git", slug:'git'}, {name:'Life and Code', slug:'life-and-code'}]
 
 const Navbar = () => {
     const [categories, setCategories] = useState<any>([]);
@@ -16,11 +15,11 @@ const Navbar = () => {
     })
 
     return (
-        <div className="flex py-4 px-4 navbar bg-teal-800/50 shadow-lg">
+        <div className="flex py-4 mx-auto my-0 rounded-lg px-4 items-center ">
 
         <div className=" flex-1">
             <Link href='/'>
-                <ApexLogo className="h-12 w-36 cursor-pointer md:h-16"/>
+                <ApexLogo className="h-16 w-32 bg-gradient-to-bl from-[#06beb6] to-[#48b1bf] rounded-full py-2 cursor-pointer md:h-16"/>
             </Link>
         </div>       
 
@@ -28,7 +27,7 @@ const Navbar = () => {
             <div className="menu menu-horizontal space-x-6">
                {categories.map((category:any) => (
                     <Link key={category.attributes.Slug} href={`/category/${category.attributes.Slug}`}>
-                        <span className=' cursor-pointer font-bold text-lg text-white'>
+                        <span className=' cursor-pointer font-bold text-lg text-white  hover:border-b-2 border-spacing-2 hover:border-[#48b1bf]'>
                             {category.attributes.Name}
                         </span>
                     </Link>
