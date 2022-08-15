@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import Head from 'next/head';
-import { Categories, BlogDetail, Author, CommentsForm, Comments, RecentBlogsWidget} from '../../components';
+import { Categories, BlogDetail, Author, RecentBlogsWidget} from '../../components';
 import SimilarBlogWidget from '../../components/SimilarBlogWidget';
 import { useGetBlogDetailQuery } from '../../graphql/generated/schema';
 import { useApolloClient } from '@apollo/client';
@@ -54,8 +54,6 @@ const BlogDetails: NextPage = () => {
                 <div className='col-span-1 lg:col-span-8'>
                     <BlogDetail blog={blog[0]?.attributes}/> 
                     <Author author={blog[0]?.attributes?.author} />
-                    <CommentsForm slug={blog[0]?.attributes?.slug}/>
-                    <Comments slug={blog[0]?.attributes?.slug}/>
                 </div>
                 <div className='col-span-1 lg:col-span-4'>
                     <div className=' relative lgsticky top-8'>

@@ -7,7 +7,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const Footer = () => {
     return (
-        <footer className=" footer items-center p-4 bg-gradient-to-bl from-[#06beb6] to-[#48b1bf] text-neutral-content">
+        <footer className=" footer items-center p-4 bg-[#89d8d3] bg-gradient-to-br from-[#89d8d3]/0 to-[#03c8a8]/75 text-neutral-content">
             <div className='items-center grid-flow-col'>
                 <ApexLogo className="h-12 w-36 cursor-pointer md:h-16"/>
                 <p className='font-bold text-white'>© 2022 The Web Apex Blogs - @zencoder24 </p>

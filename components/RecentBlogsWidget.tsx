@@ -16,8 +16,8 @@ const RecentBlogsWidget = () => {
         
         
     return (
-        <div className='bg-white shadow-lg rounded-lg p-8 mb-8'>
-           <h3 className=' text-xl text-slate-600 mb-8 font-semibold border-b pb-4 '>Recent Posts</h3>
+        <div className='text-white rounded-lg p-8 mb-8'>
+           <h3 className=' text-xl text-[#4dccc6] mb-8 font-semibold border-b pb-4 '>Recent Posts</h3>
            {widgetBlogs.map((blog:any) => (
             <div key={blog.attributes.title} className='flex items-center w-full mb-4'>
                 <div className='w-16 flex-none'>
@@ -30,11 +30,11 @@ const RecentBlogsWidget = () => {
                         />
                 </div>
                 <div className='flex-row ml-4 '>
-                    <p className=' text-gray-500 text-xs'>
+                    <p className=' text-[#4dccc6] text-xs'>
                         {moment(blog.attributes.createdAt).format('MMM DD, YYYY')}
                     </p>
                     <Link key={blog.attributes.title} href={`/blog/${blog.attributes.slug}`}>
-                        <p className='hover:underline hover:text-[#48b1bf] cursor-pointer'>{blog.attributes.title}</p>
+                        <p className='font-semibold hover:underline hover:text-[#03c8a8] cursor-pointer'>{blog.attributes.title}</p>
                     </Link>
                 </div>
             </div>
