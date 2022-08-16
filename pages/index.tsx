@@ -10,15 +10,15 @@ const Home: NextPage = () => {
      let blogs = data?.blogs?.data
      
     return (
-        <div className='container mx-auto my-0 mb-8 w-1/2'>
+        <div className='container mx-auto px-16 my-0 mb-8 max-w-[768px]'>
           <Head>
             <title>Apex Blogs | Home</title>
           </Head>
-          <div className='header-content'>
+          <div className='header-content mt-8'>
             <HeaderContent/>
           </div>
           <div className=' '>
-            <div className='mt-12' >
+            <div className='mt-24' >
               {blogs?.map ((blog:any) => (<BlogCard blog={blog} key={blog.attributes.title}/>))}
             </div>
           {/* <div className='lg:col-span-4 col-span-1'>

@@ -25,13 +25,13 @@ const Navbar = () => {
 
         <div className="flex-none">
             <div className="menu menu-horizontal space-x-6">
-               {categories.map((category:any) => (
+               {/* {categories.map((category:any) => (
                     <Link key={category.attributes.Slug} href={`/category/${category.attributes.Slug}`}>
                         <span className=' cursor-pointer font-bold text-lg text-white  hover:border-b-2 border-spacing-2 hover:border-[#03c8a8]'>
                             {category.attributes.Name}
                         </span>
                     </Link>
-               ))}
+               ))} */}
             </div>
         </div>
 
