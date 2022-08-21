@@ -1,31 +1,34 @@
-import React from 'react';
-import { useGetCategoriesQuery } from '../graphql/generated/schema';
-import { useState } from 'react';
-import Link from 'next/link';
+import React from "react";
+import { useGetCategoriesQuery } from "../graphql/generated/schema";
+import { useState } from "react";
+import Link from "next/link";
 
 const Categories = () => {
-    const [categories, setCategories] = useState<any>([])
+  const [categories, setCategories] = useState<any>([]);
 
-    const {data} = useGetCategoriesQuery({
-        onCompleted: (data) => {
-            setCategories(data.categories?.data)
-        }
-    })
+  const { data } = useGetCategoriesQuery({
+    onCompleted: (data) => {
+      setCategories(data.categories?.data);
+    },
+  });
 
-
-    return (
-        <div className='text-white rounded-lg p-8 mb-8 pb-12'>
-           <h3 className=' text-xl text-[#4dccc6]  mb-8 font-semibold border-b pb-4 '>Categories</h3>
-            {categories.map((category:any) => (
-                <Link key={category.attributes.Slug} href={`/category/${category.attributes.Slug}`}>
-                    <span className='font-semibold cursor-pointer block pb-3 mb-3 hover:underline hover:text-[#03c8a8]'>
-                        {category.attributes.Name}
-                    </span>
-                </Link>
-            ))}
-        </div>
-
-    );
+  return (
+    <div className="mb-8 rounded-lg p-8 pb-12 text-white">
+      <h3 className=" mb-8 border-b  pb-4 text-xl font-semibold text-primary ">
+        Categories
+      </h3>
+      {categories.map((category: any) => (
+        <Link
+          key={category.attributes.Slug}
+          href={`/category/${category.attributes.Slug}`}
+        >
+          <span className="mb-3 block cursor-pointer pb-3 font-semibold text-accent hover:text-primary hover:underline">
+            {category.attributes.Name}
+          </span>
+        </Link>
+      ))}
+    </div>
+  );
 };
 
 export default Categories;

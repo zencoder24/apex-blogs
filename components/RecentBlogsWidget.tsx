@@ -1,46 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import moment from 'moment';
-import Link from 'next/link';
-import { useGetRecentBlogsQuery, useGetSimilarBlogsQuery } from '../graphql/generated/schema';
-
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import moment from "moment";
+import Link from "next/link";
+import {
+  useGetRecentBlogsQuery,
+  useGetSimilarBlogsQuery,
+} from "../graphql/generated/schema";
 
 const RecentBlogsWidget = () => {
-    const [widgetBlogs, setWidgetBlogs] = useState<any>([])
+  const [widgetBlogs, setWidgetBlogs] = useState<any>([]);
 
-        const {data} = useGetRecentBlogsQuery({
-            onCompleted: (data) => {
-                setWidgetBlogs(data.blogs?.data)
-            }
-        })
-        
-        
-    return (
-        <div className='text-white rounded-lg p-8 mb-8'>
-           <h3 className=' text-xl text-[#4dccc6] mb-8 font-semibold border-b pb-4 '>Recent Posts</h3>
-           {widgetBlogs.map((blog:any) => (
-            <div key={blog.attributes.title} className='flex items-center w-full mb-4'>
-                <div className='w-16 flex-none'>
-                    <Image
-                        src={`${process.env.NEXT_PUBLIC_API_URL}${blog.attributes.featureImage.data.attributes.url}`}
-                        className='align-middle rounded-full'
-                        alt={blog.attributes.title}
-                        height={60}
-                        width={60}
-                        />
-                </div>
-                <div className='flex-row ml-4 '>
-                    <p className=' text-[#4dccc6] text-xs'>
-                        {moment(blog.attributes.createdAt).format('MMM DD, YYYY')}
-                    </p>
-                    <Link key={blog.attributes.title} href={`/blog/${blog.attributes.slug}`}>
-                        <p className='font-semibold hover:underline hover:text-[#03c8a8] cursor-pointer'>{blog.attributes.title}</p>
-                    </Link>
-                </div>
-            </div>
-           ))}
+  const { data } = useGetRecentBlogsQuery({
+    onCompleted: (data) => {
+      setWidgetBlogs(data.blogs?.data);
+    },
+  });
+
+  return (
+    <div className="mb-8 rounded-lg p-8 text-white">
+      <h3 className=" mb-8 border-b pb-4 text-xl font-semibold text-primary ">
+        Recent Posts
+      </h3>
+      {widgetBlogs.map((blog: any) => (
+        <div
+          key={blog.attributes.title}
+          className="mb-4 flex w-full items-center text-accent"
+        >
+          <div className="w-16 flex-none">
+            <Image
+              src={`${process.env.NEXT_PUBLIC_API_URL}${blog.attributes.featureImage.data.attributes.url}`}
+              className="rounded-full align-middle"
+              alt={blog.attributes.title}
+              height={60}
+              width={60}
+            />
+          </div>
+          <div className="ml-4 flex-row ">
+            <p className=" text-xs text-primary">
+              {moment(blog.attributes.createdAt).format("MMM DD, YYYY")}
+            </p>
+            <Link
+              key={blog.attributes.title}
+              href={`/blog/${blog.attributes.slug}`}
+            >
+              <p className="cursor-pointer font-semibold hover:text-secondary hover:underline">
+                {blog.attributes.title}
+              </p>
+            </Link>
+          </div>
         </div>
-    );
+      ))}
+    </div>
+  );
 };
 
 export default RecentBlogsWidget;
