@@ -25,7 +25,10 @@ export type Author = {
   Photo?: Maybe<UploadFileEntityResponse>;
   blogs?: Maybe<BlogRelationResponseCollection>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  githubLink?: Maybe<Scalars['String']>;
+  linkedInLink?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
+  twitterLink?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -60,10 +63,13 @@ export type AuthorFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<AuthorFiltersInput>>>;
   blogs?: InputMaybe<BlogFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  githubLink?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
+  linkedInLink?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<AuthorFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<AuthorFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  twitterLink?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -72,7 +78,10 @@ export type AuthorInput = {
   Name?: InputMaybe<Scalars['String']>;
   Photo?: InputMaybe<Scalars['ID']>;
   blogs?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  githubLink?: InputMaybe<Scalars['String']>;
+  linkedInLink?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  twitterLink?: InputMaybe<Scalars['String']>;
 };
 
 export type Blog = {
@@ -81,6 +90,7 @@ export type Blog = {
   author?: Maybe<AuthorEntityResponse>;
   body: Scalars['String'];
   categories?: Maybe<CategoryRelationResponseCollection>;
+  comments?: Maybe<CommentRelationResponseCollection>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   featureImage?: Maybe<UploadFileEntityResponse>;
@@ -94,6 +104,14 @@ export type Blog = {
 
 export type BlogCategoriesArgs = {
   filters?: InputMaybe<CategoryFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type BlogCommentsArgs = {
+  filters?: InputMaybe<CommentFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -122,6 +140,7 @@ export type BlogFiltersInput = {
   author?: InputMaybe<AuthorFiltersInput>;
   body?: InputMaybe<StringFilterInput>;
   categories?: InputMaybe<CategoryFiltersInput>;
+  comments?: InputMaybe<CommentFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
@@ -139,6 +158,7 @@ export type BlogInput = {
   author?: InputMaybe<Scalars['ID']>;
   body?: InputMaybe<Scalars['String']>;
   categories?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  comments?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   description?: InputMaybe<Scalars['String']>;
   featureImage?: InputMaybe<Scalars['ID']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
@@ -244,6 +264,7 @@ export type Comment = {
   Comment: Scalars['String'];
   Email: Scalars['String'];
   Name: Scalars['String'];
+  blog?: Maybe<BlogEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -271,6 +292,7 @@ export type CommentFiltersInput = {
   Email?: InputMaybe<StringFilterInput>;
   Name?: InputMaybe<StringFilterInput>;
   and?: InputMaybe<Array<InputMaybe<CommentFiltersInput>>>;
+  blog?: InputMaybe<BlogFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   not?: InputMaybe<CommentFiltersInput>;
@@ -283,7 +305,149 @@ export type CommentInput = {
   Comment?: InputMaybe<Scalars['String']>;
   Email?: InputMaybe<Scalars['String']>;
   Name?: InputMaybe<Scalars['String']>;
+  blog?: InputMaybe<Scalars['ID']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type CommentRelationResponseCollection = {
+  __typename?: 'CommentRelationResponseCollection';
+  data: Array<CommentEntity>;
+};
+
+export type CommentsComment = {
+  __typename?: 'CommentsComment';
+  approvalStatus?: Maybe<Scalars['String']>;
+  authorAvatar?: Maybe<Scalars['String']>;
+  authorEmail?: Maybe<Scalars['String']>;
+  authorId?: Maybe<Scalars['String']>;
+  authorName?: Maybe<Scalars['String']>;
+  authorUser?: Maybe<UsersPermissionsUserEntityResponse>;
+  blockReason?: Maybe<Scalars['String']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  blockedThread?: Maybe<Scalars['Boolean']>;
+  content: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  related?: Maybe<Scalars['String']>;
+  removed?: Maybe<Scalars['Boolean']>;
+  reports?: Maybe<CommentsCommentReportRelationResponseCollection>;
+  threadOf?: Maybe<CommentsCommentEntityResponse>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type CommentsCommentReportsArgs = {
+  filters?: InputMaybe<CommentsCommentReportFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type CommentsCommentEntity = {
+  __typename?: 'CommentsCommentEntity';
+  attributes?: Maybe<CommentsComment>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type CommentsCommentEntityResponse = {
+  __typename?: 'CommentsCommentEntityResponse';
+  data?: Maybe<CommentsCommentEntity>;
+};
+
+export type CommentsCommentEntityResponseCollection = {
+  __typename?: 'CommentsCommentEntityResponseCollection';
+  data: Array<CommentsCommentEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type CommentsCommentFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CommentsCommentFiltersInput>>>;
+  approvalStatus?: InputMaybe<StringFilterInput>;
+  authorAvatar?: InputMaybe<StringFilterInput>;
+  authorEmail?: InputMaybe<StringFilterInput>;
+  authorId?: InputMaybe<StringFilterInput>;
+  authorName?: InputMaybe<StringFilterInput>;
+  authorUser?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  blockReason?: InputMaybe<StringFilterInput>;
+  blocked?: InputMaybe<BooleanFilterInput>;
+  blockedThread?: InputMaybe<BooleanFilterInput>;
+  content?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<CommentsCommentFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CommentsCommentFiltersInput>>>;
+  related?: InputMaybe<StringFilterInput>;
+  removed?: InputMaybe<BooleanFilterInput>;
+  reports?: InputMaybe<CommentsCommentReportFiltersInput>;
+  threadOf?: InputMaybe<CommentsCommentFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type CommentsCommentInput = {
+  approvalStatus?: InputMaybe<Scalars['String']>;
+  authorAvatar?: InputMaybe<Scalars['String']>;
+  authorEmail?: InputMaybe<Scalars['String']>;
+  authorId?: InputMaybe<Scalars['String']>;
+  authorName?: InputMaybe<Scalars['String']>;
+  authorUser?: InputMaybe<Scalars['ID']>;
+  blockReason?: InputMaybe<Scalars['String']>;
+  blocked?: InputMaybe<Scalars['Boolean']>;
+  blockedThread?: InputMaybe<Scalars['Boolean']>;
+  content?: InputMaybe<Scalars['String']>;
+  related?: InputMaybe<Scalars['String']>;
+  removed?: InputMaybe<Scalars['Boolean']>;
+  reports?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  threadOf?: InputMaybe<Scalars['ID']>;
+};
+
+export type CommentsCommentReport = {
+  __typename?: 'CommentsCommentReport';
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  reason: Enum_Commentscommentreport_Reason;
+  related?: Maybe<CommentsCommentEntityResponse>;
+  resolved?: Maybe<Scalars['Boolean']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type CommentsCommentReportEntity = {
+  __typename?: 'CommentsCommentReportEntity';
+  attributes?: Maybe<CommentsCommentReport>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type CommentsCommentReportEntityResponse = {
+  __typename?: 'CommentsCommentReportEntityResponse';
+  data?: Maybe<CommentsCommentReportEntity>;
+};
+
+export type CommentsCommentReportEntityResponseCollection = {
+  __typename?: 'CommentsCommentReportEntityResponseCollection';
+  data: Array<CommentsCommentReportEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type CommentsCommentReportFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CommentsCommentReportFiltersInput>>>;
+  content?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<CommentsCommentReportFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CommentsCommentReportFiltersInput>>>;
+  reason?: InputMaybe<StringFilterInput>;
+  related?: InputMaybe<CommentsCommentFiltersInput>;
+  resolved?: InputMaybe<BooleanFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type CommentsCommentReportInput = {
+  content?: InputMaybe<Scalars['String']>;
+  reason?: InputMaybe<Enum_Commentscommentreport_Reason>;
+  related?: InputMaybe<Scalars['ID']>;
+  resolved?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type CommentsCommentReportRelationResponseCollection = {
+  __typename?: 'CommentsCommentReportRelationResponseCollection';
+  data: Array<CommentsCommentReportEntity>;
 };
 
 export type DateTimeFilterInput = {
@@ -309,6 +473,12 @@ export type DateTimeFilterInput = {
   or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   startsWith?: InputMaybe<Scalars['DateTime']>;
 };
+
+export enum Enum_Commentscommentreport_Reason {
+  BadLanguage = 'BAD_LANGUAGE',
+  Discrimination = 'DISCRIMINATION',
+  Other = 'OTHER'
+}
 
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
@@ -340,7 +510,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Author | Blog | Category | Comment | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Author | Blog | Category | Comment | CommentsComment | CommentsCommentReport | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -456,6 +626,8 @@ export type Mutation = {
   createBlog?: Maybe<BlogEntityResponse>;
   createCategory?: Maybe<CategoryEntityResponse>;
   createComment?: Maybe<CommentEntityResponse>;
+  createCommentsComment?: Maybe<CommentsCommentEntityResponse>;
+  createCommentsCommentReport?: Maybe<CommentsCommentReportEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
@@ -466,6 +638,8 @@ export type Mutation = {
   deleteBlog?: Maybe<BlogEntityResponse>;
   deleteCategory?: Maybe<CategoryEntityResponse>;
   deleteComment?: Maybe<CommentEntityResponse>;
+  deleteCommentsComment?: Maybe<CommentsCommentEntityResponse>;
+  deleteCommentsCommentReport?: Maybe<CommentsCommentReportEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -487,6 +661,8 @@ export type Mutation = {
   updateBlog?: Maybe<BlogEntityResponse>;
   updateCategory?: Maybe<CategoryEntityResponse>;
   updateComment?: Maybe<CommentEntityResponse>;
+  updateCommentsComment?: Maybe<CommentsCommentEntityResponse>;
+  updateCommentsCommentReport?: Maybe<CommentsCommentReportEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -515,6 +691,16 @@ export type MutationCreateCategoryArgs = {
 
 export type MutationCreateCommentArgs = {
   data: CommentInput;
+};
+
+
+export type MutationCreateCommentsCommentArgs = {
+  data: CommentsCommentInput;
+};
+
+
+export type MutationCreateCommentsCommentReportArgs = {
+  data: CommentsCommentReportInput;
 };
 
 
@@ -554,6 +740,16 @@ export type MutationDeleteCategoryArgs = {
 
 
 export type MutationDeleteCommentArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteCommentsCommentArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteCommentsCommentReportArgs = {
   id: Scalars['ID'];
 };
 
@@ -642,6 +838,18 @@ export type MutationUpdateCommentArgs = {
 };
 
 
+export type MutationUpdateCommentsCommentArgs = {
+  data: CommentsCommentInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateCommentsCommentReportArgs = {
+  data: CommentsCommentReportInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
@@ -710,6 +918,10 @@ export type Query = {
   category?: Maybe<CategoryEntityResponse>;
   comment?: Maybe<CommentEntityResponse>;
   comments?: Maybe<CommentEntityResponseCollection>;
+  commentsComment?: Maybe<CommentsCommentEntityResponse>;
+  commentsCommentReport?: Maybe<CommentsCommentReportEntityResponse>;
+  commentsCommentReports?: Maybe<CommentsCommentReportEntityResponseCollection>;
+  commentsComments?: Maybe<CommentsCommentEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
@@ -772,6 +984,30 @@ export type QueryCommentsArgs = {
   filters?: InputMaybe<CommentFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryCommentsCommentArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryCommentsCommentReportArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryCommentsCommentReportsArgs = {
+  filters?: InputMaybe<CommentsCommentReportFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryCommentsCommentsArgs = {
+  filters?: InputMaybe<CommentsCommentFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1242,7 +1478,7 @@ export type GetBlogDetailQueryVariables = Exact<{
 }>;
 
 
-export type GetBlogDetailQuery = { __typename?: 'Query', blogs?: { __typename?: 'BlogEntityResponseCollection', data: Array<{ __typename?: 'BlogEntity', attributes?: { __typename?: 'Blog', createdAt?: any | null, body: string, slug: string, title: string, description?: string | null, featureImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Name: string, Slug: string } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', id?: string | null, attributes?: { __typename?: 'Author', Bio: string, Name: string, Photo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null }> } | null };
+export type GetBlogDetailQuery = { __typename?: 'Query', blogs?: { __typename?: 'BlogEntityResponseCollection', data: Array<{ __typename?: 'BlogEntity', attributes?: { __typename?: 'Blog', createdAt?: any | null, body: string, slug: string, title: string, description?: string | null, featureImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Name: string, Slug: string } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', id?: string | null, attributes?: { __typename?: 'Author', twitterLink?: string | null, githubLink?: string | null, linkedInLink?: string | null, Bio: string, Name: string, Photo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null }> } | null };
 
 export type GetBlogsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1297,6 +1533,9 @@ export const GetBlogDetailDocument = gql`
           data {
             id
             attributes {
+              twitterLink
+              githubLink
+              linkedInLink
               Bio
               Name
               Photo {

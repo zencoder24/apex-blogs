@@ -26,6 +26,9 @@ query GetBlogDetail($slug: String!) {
           data {
             id
             attributes {
+              twitterLink
+              githubLink
+              linkedInLink
               Bio
               Name
               Photo {
