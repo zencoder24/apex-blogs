@@ -1,9 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
-import Image from "next/image";
 import moment from "moment";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { MarkdownComponents } from "../services/MarkdownComponents";
 
 const BlogDetail = ({ blog }: any) => {
@@ -25,13 +23,6 @@ const BlogDetail = ({ blog }: any) => {
         </h2>
         <div className="mb-4 flex w-full">
           <div className="mb-4 flex w-auto  items-center ">
-            {/* <Image
-                            src={ `${process.env.NEXT_PUBLIC_API_URL}${blog.author.data.attributes.Photo.data.attributes.url}`} 
-                            className=' align-middle rounded-full'
-                            alt={blog.author.data.attributes.Name}
-                            height={30}
-                            width ={30}
-                        /> */}
             <p className="mr-2 inline align-middle text-base text-light-neutral/70 dark:text-dark-neutral/70">
               By{" "}
               <span className="font-bold">

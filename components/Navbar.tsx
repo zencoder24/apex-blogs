@@ -5,15 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBarsStaggered,
   faAngleDown,
-  faToggleOff,
-  faToggleOn,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "next-themes";
-import { useGetCategoriesQuery } from "../graphql/generated/schema";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
-  const [checked, setChecked] = useState<Boolean>(false);
+  const [checked, setChecked] = useState<boolean>(false);
 
   const themeChange = () => {
     if (checked) {
@@ -24,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="mx-auto my-0 flex items-center justify-between py-4 ">
+    <nav className="mx-auto my-0 flex items-center justify-between py-4  px-4">
       <div className=" center flex cursor-pointer items-center space-x-2 text-light-primary dark:text-dark-primary">
         <FontAwesomeIcon icon={faBarsStaggered} />
         <p className=" font-semibold ">Categories</p>
@@ -42,7 +39,7 @@ const Navbar = () => {
             type="checkbox"
             className="toggle toggle-primary toggle-md"
             checked={checked}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setChecked(e.target.checked);
               themeChange();
             }}
