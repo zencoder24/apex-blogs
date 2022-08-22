@@ -7,13 +7,13 @@ import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 
 const BlogCard = ({ blog }: any) => {
   return (
-    <article className="mb-24 p-0 text-[#e4e9f8] hover:border-l-4 hover:border-secondary hover:pl-4">
-      <h1 className=" cursor-pointer text-left text-3xl font-bold text-accent transition duration-500 hover:text-secondary ">
+    <article className="mb-24 p-0 hover:border-l-4  hover:border-light-primary hover:pl-4 hover:dark:border-dark-secondary">
+      <h1 className=" cursor-pointer text-left text-3xl font-bold text-light-accent transition duration-500 hover:text-light-secondary dark:text-dark-accent hover:dark:text-dark-secondary ">
         <Link href={`/blog/${blog.attributes.slug}`}>
           {blog.attributes.title}
         </Link>
       </h1>
-      <div className=" my-2 flex space-x-2 text-accent ">
+      <div className=" my-2 flex space-x-2 text-light-accent dark:text-dark-accent ">
         <div className="text-sm font-medium after:pl-2 after:content-['•']">
           <FontAwesomeIcon icon={faCalendarAlt} className="text-red-600 " />
           <span className="ml-2">
@@ -24,7 +24,7 @@ const BlogCard = ({ blog }: any) => {
           <span>4 Min Read</span>
         </div>
       </div>
-      <p className=" mb-4 text-left text-[15px]   text-accent  ">
+      <p className=" mb-4 text-left text-[15px] text-light-accent dark:text-dark-accent  ">
         {blog.attributes.description}
       </p>
     </article>

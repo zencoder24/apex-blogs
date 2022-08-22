@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   let blogs = data?.blogs?.data;
 
   return (
-    <div className="container  mx-auto my-0 mb-8 max-w-[768px] px-16">
+    <div className="container mx-auto my-0  mb-8 max-w-[768px] ">
       <Head>
         <title>Apex Blogs | Home</title>
       </Head>

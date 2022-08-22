@@ -8,7 +8,7 @@ import { MarkdownComponents } from "../services/MarkdownComponents";
 
 const BlogDetail = ({ blog }: any) => {
   return (
-    <div className=" my-8 rounded-lg bg-accent pb-12 shadow-lg lg:p-8 ">
+    <div className=" my-8 rounded-lg bg-light-accent pb-12 shadow-lg dark:bg-dark-accent lg:p-8 ">
       <div className=" relative mb-6 overflow-hidden shadow-md">
         <img
           src={`${process.env.NEXT_PUBLIC_API_URL}${blog.featureImage.data.attributes.url}`}
@@ -17,10 +17,10 @@ const BlogDetail = ({ blog }: any) => {
         />
       </div>
       <div className="px-4">
-        <h1 className="mb-2 text-4xl font-extrabold text-neutral ">
+        <h1 className="mb-2 text-4xl font-extrabold text-light-neutral dark:text-dark-neutral ">
           {blog.title}
         </h1>
-        <h2 className="mb-4 text-lg font-semibold italic text-neutral">
+        <h2 className="mb-4 text-lg font-semibold italic text-light-neutral dark:text-dark-neutral">
           {blog.description}
         </h2>
         <div className="mb-4 flex w-full">
@@ -32,14 +32,14 @@ const BlogDetail = ({ blog }: any) => {
                             height={30}
                             width ={30}
                         /> */}
-            <p className="mr-2 inline align-middle text-base text-neutral/70">
+            <p className="mr-2 inline align-middle text-base text-light-neutral/70 dark:text-dark-neutral/70">
               By{" "}
               <span className="font-bold">
                 {blog.author.data.attributes.Name}
               </span>
             </p>
           </div>
-          <div className="flex font-semibold text-neutral/70 before:mr-2 before:content-['•']">
+          <div className="flex font-semibold text-light-neutral/70 before:mr-2 before:content-['•'] dark:text-dark-neutral/70">
             <p className="mr-1">Written On: </p>
             <span className="text-center">
               {moment(blog.createdAt).format("MMM DD, YYYY")}
@@ -47,7 +47,7 @@ const BlogDetail = ({ blog }: any) => {
           </div>
         </div>
 
-        <div className="prose text-neutral">
+        <div className="prose text-light-neutral dark:text-dark-neutral">
           <ReactMarkdown components={MarkdownComponents}>
             {blog.body}
           </ReactMarkdown>

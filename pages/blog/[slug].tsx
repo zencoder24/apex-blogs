@@ -40,7 +40,7 @@ const BlogDetails: NextPage = () => {
   console.log(blog);
 
   return (
-    <div className=" container mx-auto mb-8 px-10">
+    <div className=" container mx-auto mb-8 bg-light-neutral px-10 dark:bg-dark-neutral">
       <Head>
         <title>Apex Blogs | {blog[0]?.attributes?.title}</title>
       </Head>
