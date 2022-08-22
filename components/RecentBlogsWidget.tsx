@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import moment from "moment";
 import Link from "next/link";
-import {
-  useGetRecentBlogsQuery,
-  useGetSimilarBlogsQuery,
-} from "../graphql/generated/schema";
+import { useGetRecentBlogsQuery } from "../graphql/generated/schema";
 
 const RecentBlogsWidget = () => {
   const [widgetBlogs, setWidgetBlogs] = useState<any>([]);
@@ -17,7 +14,7 @@ const RecentBlogsWidget = () => {
   });
 
   return (
-    <div className="text-white mb-8 rounded-lg p-8">
+    <div className="mb-8 rounded-lg p-8 text-white">
       <h3 className=" mb-8 border-b pb-4 text-xl font-semibold text-light-primary dark:text-dark-primary ">
         Recent Posts
       </h3>

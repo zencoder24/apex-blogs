@@ -8,7 +8,6 @@ import {
   Author,
   RecentBlogsWidget,
 } from "../../components";
-import SimilarBlogWidget from "../../components/SimilarBlogWidget";
 import { useGetBlogDetailQuery } from "../../graphql/generated/schema";
 import { useApolloClient } from "@apollo/client";
 

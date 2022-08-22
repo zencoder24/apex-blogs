@@ -4,8 +4,7 @@ import "../styles/globals.css";
 import { Navbar } from "../components/";
 import Footer from "../components/Footer";
 import { ApolloProvider } from "@apollo/client";
-import { ApolloClient, gql, InMemoryCache, useQuery } from "@apollo/client";
-import { themeChange } from "theme-change";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ThemeProvider } from "next-themes";
 
 function MyApp({ Component, pageProps }: AppProps) {

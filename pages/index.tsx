@@ -1,10 +1,5 @@
 import { NextPage } from "next";
-import {
-  BlogCard,
-  HeaderContent,
-  Categories,
-  RecentBlogsWidget,
-} from "../components";
+import { BlogCard, HeaderContent } from "../components";
 import Head from "next/head";
 import React from "react";
 import { useGetBlogsQuery } from "../graphql/generated/schema";
@@ -27,12 +22,6 @@ const Home: NextPage = () => {
             <BlogCard blog={blog} key={blog.attributes.title} />
           ))}
         </div>
-        {/* <div className='lg:col-span-4 col-span-1'>
-                <div className=' relative top-6 mt-12 '>
-                  <RecentBlogsWidget />
-                  <Categories/>
-                </div>
-          </div> */}
       </div>
     </div>
   );
