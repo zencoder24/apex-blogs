@@ -21,17 +21,17 @@ const BlogDetail = ({ blog }: any) => {
         <h2 className="mb-4 text-lg font-semibold italic text-light-neutral dark:text-dark-neutral">
           {blog.description}
         </h2>
-        <div className="mb-4 flex w-full">
+        <div className="mb-4 flex w-full flex-col md:flex-row">
           <div className="mb-4 flex w-auto  items-center ">
             <p className="mr-2 inline align-middle text-base text-light-neutral/70 dark:text-dark-neutral/70">
-              By{" "}
+              By:{" "}
               <span className="font-bold">
                 {blog.author.data.attributes.Name}
               </span>
             </p>
           </div>
-          <div className="flex font-semibold text-light-neutral/70 before:mr-2 before:content-['•'] dark:text-dark-neutral/70">
-            <p className="mr-1">Written On: </p>
+          <div className="flex font-semibold text-light-neutral/70 dark:text-dark-neutral/70 md:before:mr-2 md:before:content-['•']">
+            <p className="md:mr-1">Written On: </p>
             <span className="text-center">
               {moment(blog.createdAt).format("MMM DD, YYYY")}
             </span>

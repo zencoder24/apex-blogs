@@ -37,7 +37,7 @@ const Navbar = () => {
         <div className="menu menu-horizontal space-x-6">
           <input
             type="checkbox"
-            className="toggle toggle-primary toggle-md"
+            className="toggle toggle-md  border-light-secondary bg-light-primary dark:border-dark-primary dark:bg-dark-secondary"
             checked={checked}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setChecked(e.target.checked);

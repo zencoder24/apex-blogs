@@ -8,7 +8,10 @@ import {
   Author,
   RecentBlogsWidget,
 } from "../../components";
-import { useGetBlogDetailQuery } from "../../graphql/generated/schema";
+import {
+  useGetBlogDetailQuery,
+  BlogEntity,
+} from "../../graphql/generated/schema";
 import { useApolloClient } from "@apollo/client";
 
 const BlogDetails: NextPage = () => {
@@ -16,11 +19,10 @@ const BlogDetails: NextPage = () => {
 
   // const [blog, setBlog] = useState<any>([])
   const router = useRouter();
-  const slug = router.query.slug;
-  let blog;
+  let blog: any;
 
   const { data, loading, error } = useGetBlogDetailQuery({
-    variables: { slug: router.query.slug },
+    variables: { slug: router?.query?.slug },
   });
 
   if (data) {
@@ -51,7 +53,6 @@ const BlogDetails: NextPage = () => {
         <div className="col-span-1 lg:col-span-4">
           <div className=" lgsticky relative top-8">
             <RecentBlogsWidget />
-            {/* <SimilarBlogWidget/> */}
             <Categories />
           </div>
         </div>
