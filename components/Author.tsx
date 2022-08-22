@@ -27,7 +27,7 @@ const Author = ({ author }: any) => {
       <p className="text-lg text-light-accent dark:text-dark-accent">
         {author.data.attributes.Bio}
       </p>
-      <div className="social-links my-2 flex justify-center space-x-2 align-middle">
+      <div className="social-links my-2 flex justify-center space-x-2 align-middle text-light-accent dark:text-dark-accent">
         <Link href={author.data.attributes.githubLink}>
           <FontAwesomeIcon
             className="h-6 cursor-pointer hover:text-[#BD2C00]  "
