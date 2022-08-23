@@ -10,6 +10,7 @@ query GetCategoryBlogs($slug: String!) {
               slug
               title
               description
+              body
               author {
                 data {
                   attributes {

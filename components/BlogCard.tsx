@@ -3,8 +3,11 @@ import moment from "moment";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { readingTime } from "reading-time-estimator";
 
 const BlogCard = ({ blog }: any) => {
+  const result = readingTime(blog.attributes.body);
+
   return (
     <article className="mb-24 p-0 hover:border-l-4  hover:border-light-primary hover:pl-4 hover:dark:border-dark-secondary">
       <h1 className=" cursor-pointer text-left text-3xl font-bold text-light-accent transition duration-500 hover:text-light-secondary dark:text-dark-accent hover:dark:text-dark-secondary ">
@@ -20,7 +23,7 @@ const BlogCard = ({ blog }: any) => {
           </span>
         </div>
         <div className="text-sm">
-          <span>4 Min Read</span>
+          <span>{result.text}</span>
         </div>
       </div>
       <p className=" mb-4 text-left text-[15px] text-light-accent dark:text-dark-accent  ">
