@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        raleway: ["Raleway", "sans-serif"],
+        jetbrainsMono: ["JetBrains Mono", "monospace"],
       },
       colors: {
         "dark-primary": "#89d8d3",

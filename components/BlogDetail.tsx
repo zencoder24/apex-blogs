@@ -31,14 +31,14 @@ const BlogDetail = ({ blog }: any) => {
             </p>
           </div>
           <div className="flex font-semibold text-light-neutral/70 dark:text-dark-neutral/70 md:before:mr-2 md:before:content-['•']">
-            <p className="md:mr-1">Written On: </p>
+            <p className="md:mr-1">Written On:&nbsp;</p>
             <span className="text-center">
               {moment(blog.createdAt).format("MMM DD, YYYY")}
             </span>
           </div>
         </div>
 
-        <div className="prose text-light-neutral dark:text-dark-neutral">
+        <div className="prose text-light-neutral prose-h2:text-light-neutral/70 prose-a:font-bold prose-a:text-light-primary prose-blockquote:text-light-neutral dark:text-dark-neutral/70 dark:prose-h2:text-dark-neutral dark:prose-a:text-dark-secondary dark:prose-blockquote:text-dark-neutral">
           <ReactMarkdown components={MarkdownComponents}>
             {blog.body}
           </ReactMarkdown>

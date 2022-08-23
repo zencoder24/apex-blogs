@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import {
   Categories,
@@ -8,25 +8,18 @@ import {
   Author,
   RecentBlogsWidget,
 } from "../../components";
-import {
-  useGetBlogDetailQuery,
-  BlogEntity,
-} from "../../graphql/generated/schema";
-import { useApolloClient } from "@apollo/client";
+import { useGetBlogDetailQuery } from "../../graphql/generated/schema";
 
 const BlogDetails: NextPage = () => {
-  const client = useApolloClient();
-
-  // const [blog, setBlog] = useState<any>([])
   const router = useRouter();
-  let blog: any;
+  const [blog, setBlog] = useState<any>();
 
   const { data, loading, error } = useGetBlogDetailQuery({
     variables: { slug: router?.query?.slug },
   });
 
   if (data) {
-    blog = data?.blogs?.data;
+    setBlog(data?.blogs?.data);
   }
 
   //TODO: Fix Temporary Loading Message....
