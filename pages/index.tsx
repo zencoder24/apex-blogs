@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { BlogCard, HeaderContent } from "../components";
 import Head from "next/head";
 import React from "react";
-import { useGetBlogsQuery, BlogEntity } from "../graphql/generated/schema";
+import { useGetBlogsQuery } from "../graphql/generated/schema";
 
 const Home: NextPage = () => {
   const { data, loading, error } = useGetBlogsQuery({});
@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <title>Apex Blogs | Home</title>
       </Head>
       <div className="header-content mt-8">
-        <HeaderContent />
+        <HeaderContent category="" />
       </div>
       <div className=" ">
         <div className="mt-24">

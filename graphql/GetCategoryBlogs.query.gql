@@ -1,0 +1,26 @@
+query GetCategoryBlogs($slug: String!) {
+  categories(filters: { Slug: { eq: $slug } }) {
+    data {
+      attributes {
+        Name
+        blogs {
+          data {
+            attributes {
+              createdAt
+              slug
+              title
+              description
+              author {
+                data {
+                  attributes {
+                    Name
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
