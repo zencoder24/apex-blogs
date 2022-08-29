@@ -33,7 +33,7 @@ const RecentBlogsWidget = () => {
         >
           <div className="w-16 flex-none">
             <Image
-              src={`${process.env.NEXT_PUBLIC_API_URL}${blog?.attributes?.featureImage?.data?.attributes?.url}`}
+              src={blog?.attributes?.featureImage?.data?.attributes?.url}
               className="rounded-full align-middle"
               alt={blog?.attributes?.title}
               height={60}

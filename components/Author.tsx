@@ -23,7 +23,7 @@ const Author = ({ author }: AuthorComp) => {
           alt={author?.data?.attributes?.Name}
           height={100}
           width={100}
-          src={`${process.env.NEXT_PUBLIC_API_URL}${author?.data?.attributes?.Photo?.data?.attributes?.url}`}
+          src={author?.data?.attributes?.Photo?.data?.attributes?.url}
         />
       </div>
       <h3 className="mt-4 text-xl italic text-light-accent dark:text-dark-accent">

@@ -14,7 +14,7 @@ const BlogDetail = ({ blog }: BlogDetailComp) => {
     <div className=" my-8 rounded-lg bg-light-accent pb-12 shadow-lg dark:bg-dark-accent lg:p-8 ">
       <div className=" relative mb-6 overflow-hidden shadow-md">
         <img
-          src={`${process.env.NEXT_PUBLIC_API_URL}${blog?.featureImage?.data?.attributes?.url}`}
+          src={blog?.featureImage?.data?.attributes?.url}
           alt={blog?.title}
           className=" h-full w-full object-cover object-top"
         />
