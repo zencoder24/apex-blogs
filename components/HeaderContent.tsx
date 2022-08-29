@@ -1,6 +1,10 @@
 import React from "react";
 
-const HeaderContent = ({ category }: any) => {
+interface HeaderContentComp {
+  category: string;
+}
+
+const HeaderContent = ({ category }: HeaderContentComp) => {
   return (
     <div>
       <h1 className="bg-gradient-to-br from-light-primary to-light-secondary bg-clip-text py-8 text-5xl font-extrabold text-transparent dark:from-dark-primary dark:to-dark-secondary/75">

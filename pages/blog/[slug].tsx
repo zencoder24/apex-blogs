@@ -1,30 +1,38 @@
 import { NextPage } from "next";
-import { useRouter } from "next/router";
-import React from "react";
+import { NextRouter, useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import {
   Categories,
   BlogDetail,
   Author,
   RecentBlogsWidget,
+  CommentForm,
 } from "../../components";
 import {
   useGetBlogDetailQuery,
-  BlogEntity,
+  GetBlogDetailQuery,
+  AuthorEntityResponse,
+  Maybe,
+  Blog,
 } from "../../graphql/generated/schema";
-import { useApolloClient } from "@apollo/client";
+
+import Comments from "../../components/Comments";
 
 const BlogDetails: NextPage = () => {
-  const router = useRouter();
-  let blog: any;
+  const router: NextRouter = useRouter();
+  const slugQuery = String(router.query.slug);
+  const [blog, setBlog] = useState<GetBlogDetailQuery | undefined>(undefined);
 
   const { data, loading, error } = useGetBlogDetailQuery({
-    variables: { slug: router?.query?.slug },
+    variables: { slug: slugQuery },
   });
 
-  if (data) {
-    blog = data?.blogs?.data;
-  }
+  useEffect(() => {
+    if (loading === false && data) {
+      setBlog(data);
+    }
+  }, [loading, data]);
 
   //TODO: Fix Temporary Loading Message....
   if (loading) return <h1>Loading....</h1>;
@@ -35,17 +43,21 @@ const BlogDetails: NextPage = () => {
     return <h1>Error....</h1>;
   }
 
-  console.log(blog);
-
   return (
     <div className=" container mx-auto mb-8 bg-light-neutral px-10 dark:bg-dark-neutral">
       <Head>
-        <title>Apex Blogs | {blog[0]?.attributes?.title}</title>
+        <title>Apex Blogs | {data?.blogs?.data[0]?.attributes?.title}</title>
       </Head>
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 ">
         <div className="col-span-1 lg:col-span-8">
-          <BlogDetail blog={blog[0]?.attributes} />
-          <Author author={blog[0]?.attributes?.author} />
+          <BlogDetail blog={data?.blogs?.data[0]?.attributes as Maybe<Blog>} />
+          <Author
+            author={
+              data?.blogs?.data[0]?.attributes?.author as AuthorEntityResponse
+            }
+          />
+          <CommentForm id={data?.blogs?.data[0]?.id} />
+          <Comments id={data?.blogs?.data[0]?.id} />
         </div>
         <div className="col-span-1 lg:col-span-4">
           <div className=" lgsticky relative top-8">

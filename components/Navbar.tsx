@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ApexLogo from "../assets/logo_the_web_apex.svg";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,13 +7,19 @@ import {
   faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "next-themes";
-import { useGetCategoriesQuery } from "../graphql/generated/schema";
+import {
+  CategoryEntity,
+  useGetCategoriesQuery,
+} from "../graphql/generated/schema";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [checked, setChecked] = useState<boolean>(false);
 
-  const [categories, setCategories] = useState<any>([]);
+  const [categories, setCategories] = useState<
+    Array<CategoryEntity> | undefined
+  >([]);
 
   const { data } = useGetCategoriesQuery({
     onCompleted: (data) => {
@@ -36,21 +42,21 @@ const Navbar = () => {
           tabIndex={0}
           className="flex cursor-pointer items-center space-x-2 text-light-primary dark:text-dark-primary"
         >
-          <FontAwesomeIcon icon={faBarsStaggered} />
+          <FontAwesomeIcon icon={faBarsStaggered as IconProp} />
           <p className=" font-semibold ">Categories</p>
-          <FontAwesomeIcon icon={faAngleDown} />
+          <FontAwesomeIcon icon={faAngleDown as IconProp} />
         </label>
         <ul
           tabIndex={0}
           className="dropdown-content menu rounded-box mt-4 ml-4  w-52 bg-light-primary bg-gradient-to-br  from-primary/0 to-secondary/75 py-2 dark:bg-dark-primary dark:from-light-primary/0 dark:to-dark-secondary"
         >
-          {categories.map((category: any) => (
+          {categories?.map((category: CategoryEntity) => (
             <li
-              key={category.attributes.Slug}
+              key={category?.attributes?.Slug}
               className="mb-3 cursor-pointer pb-3 font-semibold text-light-neutral hover:text-light-accent  hover:underline dark:text-dark-neutral hover:dark:text-dark-accent"
             >
-              <Link href={`/category/${category.attributes.Slug}`}>
-                {category.attributes.Name}
+              <Link href={`/category/${category?.attributes?.Slug}`}>
+                {category?.attributes?.Name}
               </Link>
             </li>
           ))}
