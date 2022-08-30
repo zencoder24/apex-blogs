@@ -22,7 +22,7 @@ export const MarkdownComponents: object = {
       return (
         <div className="postImgWrapper">
           <Image
-            src={`${process.env.NEXT_PUBLIC_API_URL}${image.properties.src}`}
+            src={image.properties.src}
             width={width}
             height={height}
             className="postImg"
