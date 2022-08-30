@@ -11,7 +11,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 const Footer = () => {
   return (
-    <footer className=" footer fixed bottom-0 h-16 w-full items-center bg-light-primary bg-gradient-to-br from-light-primary/0 to-light-secondary/75 p-2  dark:bg-dark-primary dark:from-dark-primary/0 dark:to-dark-secondary">
+    <footer className=" footer absolute bottom-0 h-16 w-full items-center bg-light-primary bg-gradient-to-br from-light-primary/0 to-light-secondary/75 p-2  dark:bg-dark-primary dark:from-dark-primary/0 dark:to-dark-secondary">
       <div className="grid-flow-col items-center">
         <ApexLogo className="h-12 w-36 cursor-pointer md:h-16" />
         <p className=" font-bold text-white">
