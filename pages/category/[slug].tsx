@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { type } from "os";
 import React, { useState } from "react";
 import { HeaderContent, BlogCard } from "../../components";
 import { useGetCategoryBlogsQuery } from "../../graphql/generated/schema";
@@ -10,8 +11,10 @@ const CategoryPage = () => {
   let catInfo: any;
   let catBlogs: any;
 
+  let passSlug = router?.query?.slug as string;
+
   const { data, loading, error } = useGetCategoryBlogsQuery({
-    variables: { slug: router?.query?.slug },
+    variables: { slug: passSlug },
   });
 
   if (data) {
