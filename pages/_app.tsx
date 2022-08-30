@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   //Apollo/Graphql
   const client = new ApolloClient({
-    uri: process.env.NEXT_PUBLIC_STRAPIGRAPHQL_ENDPOINT,
+    uri: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_ENDPOINT,
     cache: new InMemoryCache(),
   });
 
