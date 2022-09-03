@@ -57,7 +57,7 @@ const Navbar = () => {
             />
           </span>
         </a>
-        <ul className="dropdown-menu absolute left-1/3 hidden w-40 rounded-xl  bg-light-primary py-1 text-gray-700 dark:bg-slate-300 ">
+        <ul className="dropdown-menu absolute left-1/3 z-[9999] hidden w-40 rounded-xl  bg-light-primary py-1 text-gray-700 dark:bg-slate-300 ">
           {categories?.map((category: CategoryEntity) => (
             <li key={category?.attributes?.Slug} className="cursor-pointer ">
               <Link href={`/category/${category?.attributes?.Slug}`}>
