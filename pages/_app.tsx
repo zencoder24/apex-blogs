@@ -27,9 +27,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider attribute="class">
-        <Navbar />
-        <Component {...pageProps} />
-        <Footer />
+        <div className="">
+          <Navbar />
+          <Component {...pageProps} />
+          <Footer />
+        </div>
       </ThemeProvider>
     </ApolloProvider>
   );

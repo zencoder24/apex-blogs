@@ -11,7 +11,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 const Footer = () => {
   return (
-    <footer className="absolute bottom-0 w-full bg-light-primary/90 text-center dark:bg-dark-secondary/90">
+    <footer className=" w-full bg-light-primary/90 text-center dark:bg-dark-secondary/90">
       <div className="w-full pt-4">
         <div className="mb-4 flex justify-center space-x-9">
           <Link href="https://github.com/zencoder24">
