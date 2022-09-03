@@ -57,11 +57,10 @@ const Navbar = () => {
         <ul className="dropdown-menu absolute left-1/3 hidden w-40 rounded-xl  bg-light-primary py-1 text-gray-700 dark:bg-slate-300 ">
           {categories?.map((category: CategoryEntity) => (
             <li key={category?.attributes?.Slug} className="cursor-pointer ">
-              <Link
-                className=" block whitespace-nowrap rounded-xl px-4 py-2 text-gray-800 hover:font-semibold hover:dark:bg-dark-secondary"
-                href={`/category/${category?.attributes?.Slug}`}
-              >
-                {category?.attributes?.Name}
+              <Link href={`/category/${category?.attributes?.Slug}`}>
+                <a className="block whitespace-nowrap rounded-xl px-4 py-2 text-gray-800 hover:font-semibold hover:dark:bg-dark-secondary">
+                  {category?.attributes?.Name}
+                </a>
               </Link>
             </li>
           ))}
