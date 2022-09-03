@@ -1,5 +1,5 @@
 overwrite: true
-schema: ${process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_ENDPOINT}
+schema: ${NEXT_PUBLIC_STRAPI_GRAPHQL_ENDPOINT}
 documents: "graphql/*.{gql,graphql}"
 generates:
   graphql/generated/schema.ts:
