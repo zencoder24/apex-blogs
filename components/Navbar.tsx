@@ -36,17 +36,29 @@ const Navbar = () => {
     }
   };
 
-  const Dropdown = () => {
-    return (
-      <>
-        <ul className=" absolute top-16 w-40 list-none text-start">
+  return (
+    <nav className="mx-auto my-0 flex items-center justify-between py-4  px-4">
+      <div className="dropdown relative mx-2 inline-block">
+        <a className="flex cursor-pointer items-center ">
+          <span className="text-xl font-semibold">
+            <FontAwesomeIcon
+              className="block md:hidden"
+              icon={faBarsStaggered as IconProp}
+            />
+          </span>
+
+          <span className="mx-1 text-base font-semibold md:text-base">
+            Categories
+          </span>
+          <span className="text-xl font-semibold">
+            <FontAwesomeIcon icon={faAngleDown as IconProp} />
+          </span>
+        </a>
+        <ul className="dropdown-menu absolute left-1/3 hidden w-40 rounded-xl  bg-light-primary py-1 text-gray-700 dark:bg-slate-300 ">
           {categories?.map((category: CategoryEntity) => (
-            <li
-              key={category?.attributes?.Slug}
-              className=" pointer bg-orange-500"
-            >
+            <li key={category?.attributes?.Slug} className="cursor-pointer ">
               <Link
-                className=" block h-full w-full p-4 text-white"
+                className=" block whitespace-nowrap rounded-xl px-4 py-2 text-gray-800 hover:font-semibold hover:dark:bg-dark-secondary"
                 href={`/category/${category?.attributes?.Slug}`}
               >
                 {category?.attributes?.Name}
@@ -54,26 +66,6 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-      </>
-    );
-  };
-
-  return (
-    <nav className="mx-auto my-0 flex items-center justify-between py-4  px-4">
-      <div id="dropdown" className="relative">
-        <button
-          onMouseEnter={() => setDropdown(true)}
-          onMouseLeave={() => setDropdown(false)}
-          className="flex cursor-pointer items-center space-x-2 text-light-primary dark:text-dark-primary"
-        >
-          <FontAwesomeIcon
-            className="block md:hidden"
-            icon={faBarsStaggered as IconProp}
-          />
-          <p className=" hidden font-semibold md:block ">Categories</p>
-          <FontAwesomeIcon icon={faAngleDown as IconProp} />
-        </button>
-        {dropdown && <Dropdown />}
       </div>
       <div className="">
         <Link href="/">
