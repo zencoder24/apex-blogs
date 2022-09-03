@@ -16,6 +16,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [checked, setChecked] = useState<boolean>(false);
+  const [dropdown, setDropdown] = useState(false);
 
   const [categories, setCategories] = useState<
     Array<CategoryEntity> | undefined
@@ -35,32 +36,44 @@ const Navbar = () => {
     }
   };
 
-  return (
-    <nav className="mx-auto my-0 flex items-center justify-between py-4  px-4">
-      <div className="dropdown">
-        <label
-          tabIndex={0}
-          className="flex cursor-pointer items-center space-x-2 text-light-primary dark:text-dark-primary"
-        >
-          <FontAwesomeIcon icon={faBarsStaggered as IconProp} />
-          <p className=" hidden font-semibold md:block ">Categories</p>
-          <FontAwesomeIcon icon={faAngleDown as IconProp} />
-        </label>
-        <ul
-          tabIndex={0}
-          className="dropdown-content menu rounded-box mt-4 ml-4  w-52 bg-light-primary bg-gradient-to-br  from-primary/0 to-secondary/75 py-2 dark:bg-dark-primary dark:from-light-primary/0 dark:to-dark-secondary"
-        >
+  const Dropdown = () => {
+    return (
+      <>
+        <ul className=" absolute top-16 w-40 list-none text-start">
           {categories?.map((category: CategoryEntity) => (
             <li
               key={category?.attributes?.Slug}
-              className="mb-3 cursor-pointer pb-3 font-semibold text-light-neutral hover:text-light-accent  hover:underline dark:text-dark-neutral hover:dark:text-dark-accent"
+              className=" pointer bg-orange-500"
             >
-              <Link href={`/category/${category?.attributes?.Slug}`}>
+              <Link
+                className=" block h-full w-full p-4 text-white"
+                href={`/category/${category?.attributes?.Slug}`}
+              >
                 {category?.attributes?.Name}
               </Link>
             </li>
           ))}
         </ul>
+      </>
+    );
+  };
+
+  return (
+    <nav className="mx-auto my-0 flex items-center justify-between py-4  px-4">
+      <div id="dropdown" className="relative">
+        <button
+          onMouseEnter={() => setDropdown(true)}
+          onMouseLeave={() => setDropdown(false)}
+          className="flex cursor-pointer items-center space-x-2 text-light-primary dark:text-dark-primary"
+        >
+          <FontAwesomeIcon
+            className="block md:hidden"
+            icon={faBarsStaggered as IconProp}
+          />
+          <p className=" hidden font-semibold md:block ">Categories</p>
+          <FontAwesomeIcon icon={faAngleDown as IconProp} />
+        </button>
+        {dropdown && <Dropdown />}
       </div>
       <div className="">
         <Link href="/">
