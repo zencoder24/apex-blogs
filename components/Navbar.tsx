@@ -40,25 +40,28 @@ const Navbar = () => {
     <nav className="mx-auto my-0 flex items-center justify-between py-4  px-4">
       <div className="dropdown relative mx-2 inline-block">
         <a className="flex cursor-pointer items-center ">
-          <span className="text-xl font-semibold">
+          <span className="text-xl font-semibold text-light-accent">
             <FontAwesomeIcon
-              className="block md:hidden"
+              className="block text-light-accent md:hidden"
               icon={faBarsStaggered as IconProp}
             />
           </span>
 
-          <span className="mx-1 text-base font-semibold md:text-base">
+          <span className="mx-1 text-base font-semibold text-light-accent md:text-base">
             Categories
           </span>
-          <span className="text-xl font-semibold">
-            <FontAwesomeIcon icon={faAngleDown as IconProp} />
+          <span className="text-xl font-semibold text-light-accent">
+            <FontAwesomeIcon
+              className="text-light-accent"
+              icon={faAngleDown as IconProp}
+            />
           </span>
         </a>
         <ul className="dropdown-menu absolute left-1/3 hidden w-40 rounded-xl  bg-light-primary py-1 text-gray-700 dark:bg-slate-300 ">
           {categories?.map((category: CategoryEntity) => (
             <li key={category?.attributes?.Slug} className="cursor-pointer ">
               <Link href={`/category/${category?.attributes?.Slug}`}>
-                <a className="block whitespace-nowrap rounded-xl px-4 py-2 text-gray-800 hover:font-semibold hover:dark:bg-dark-secondary">
+                <a className="block whitespace-nowrap rounded-xl px-4 py-2 text-gray-800 hover:bg-light-primary hover:font-semibold hover:dark:bg-dark-secondary">
                   {category?.attributes?.Name}
                 </a>
               </Link>
