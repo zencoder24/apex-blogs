@@ -43,7 +43,7 @@ const Navbar = () => {
           className="flex cursor-pointer items-center space-x-2 text-light-primary dark:text-dark-primary"
         >
           <FontAwesomeIcon icon={faBarsStaggered as IconProp} />
-          <p className=" font-semibold ">Categories</p>
+          <p className=" hidden font-semibold md:block ">Categories</p>
           <FontAwesomeIcon icon={faAngleDown as IconProp} />
         </label>
         <ul
