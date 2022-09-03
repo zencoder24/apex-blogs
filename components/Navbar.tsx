@@ -61,7 +61,7 @@ const Navbar = () => {
           {categories?.map((category: CategoryEntity) => (
             <li key={category?.attributes?.Slug} className="cursor-pointer ">
               <Link href={`/category/${category?.attributes?.Slug}`}>
-                <a className="block whitespace-nowrap rounded-xl px-4 py-2 text-gray-800 hover:bg-light-secondary hover:font-semibold hover:dark:bg-dark-secondary">
+                <a className="block whitespace-nowrap rounded-xl px-4 py-2 text-light-neutral hover:bg-light-secondary hover:font-semibold dark:text-dark-neutral hover:dark:bg-dark-secondary">
                   {category?.attributes?.Name}
                 </a>
               </Link>
