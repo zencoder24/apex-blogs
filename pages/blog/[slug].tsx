@@ -51,6 +51,7 @@ const BlogDetails: NextPage = () => {
           property="og:title"
           content={data?.blogs?.data[0]?.attributes?.title}
         />
+        <meta property="og:description" content="Open Graph Description" />
         <meta
           property="og:image"
           content={
