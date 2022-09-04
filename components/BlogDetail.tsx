@@ -3,6 +3,7 @@ import React from "react";
 import moment from "moment";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { MarkdownComponents } from "../services/MarkdownComponents";
+import { LinkedinShareButton, LinkedinIcon } from "next-share";
 import { Blog, Maybe } from "../graphql/generated/schema";
 
 interface BlogDetailComp {
@@ -47,6 +48,15 @@ const BlogDetail = ({ blog }: BlogDetailComp) => {
           <ReactMarkdown components={MarkdownComponents}>
             {String(blog?.body)}
           </ReactMarkdown>
+        </div>
+        <div className="share-blog">
+          <LinkedinShareButton
+            url={`https://apex-blogs.vercel.app/blog/${blog?.slug}`}
+            title={blog?.title}
+            summary={blog?.description as string}
+          >
+            <LinkedinIcon size={32} round />
+          </LinkedinShareButton>
         </div>
       </div>
     </div>
