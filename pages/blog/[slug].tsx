@@ -49,19 +49,19 @@ const BlogDetails: NextPage = () => {
         <title>Apex Blogs | {data?.blogs?.data[0]?.attributes?.title}</title>
         <meta
           property="og:title"
-          content={data?.blogs?.data[0]?.attributes?.title}
+          content={blog?.blogs?.data[0].attributes?.title}
         />
         <meta property="og:description" content="Open Graph Description" />
         <meta
           property="og:image"
           content={
-            data?.blogs?.data[0]?.attributes?.featureImage?.data?.attributes
+            blog?.blogs?.data[0]?.attributes?.featureImage?.data?.attributes
               ?.url
           }
         />
         <meta
           property="og:url"
-          content={`https://apex-blogs.vercel.app/blog/${data?.blogs?.data[0]?.attributes?.slug}`}
+          content={`https://apex-blogs.vercel.app/blog/${blog?.blogs?.data[0]?.attributes?.slug}`}
         />
       </Head>
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 ">
