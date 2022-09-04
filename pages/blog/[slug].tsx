@@ -18,6 +18,7 @@ import {
 } from "../../graphql/generated/schema";
 
 import Comments from "../../components/Comments";
+import { NextSeo } from "next-seo";
 
 const BlogDetails: NextPage = () => {
   const router: NextRouter = useRouter();
@@ -45,7 +46,8 @@ const BlogDetails: NextPage = () => {
 
   return (
     <div className=" container mx-auto mb-8 bg-light-neutral px-10 dark:bg-dark-neutral">
-      <Head>
+      <NextSeo title="Blog page title" description="A short description" />
+      {/* <Head>
         <title>Apex Blogs | {data?.blogs?.data[0]?.attributes?.title}</title>
         <meta
           property="og:title"
@@ -63,7 +65,7 @@ const BlogDetails: NextPage = () => {
           property="og:url"
           content={`https://apex-blogs.vercel.app/blog/${blog?.blogs?.data[0]?.attributes?.slug}`}
         />
-      </Head>
+      </Head> */}
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 ">
         <div className="col-span-1 lg:col-span-8">
           <BlogDetail blog={data?.blogs?.data[0]?.attributes as Maybe<Blog>} />
