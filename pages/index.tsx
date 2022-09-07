@@ -1,17 +1,25 @@
-import { NextPage } from "next";
+import { GetServerSideProps, GetStaticPaths } from "next";
 import { BlogCard, HeaderContent } from "../components";
 import Head from "next/head";
 import React from "react";
+import { PageGetBlogsComp, ssrGetBlogs } from "../graphql/generated/page";
+import { withApollo } from "../graphql/withApollo";
 import { useGetBlogsQuery } from "../graphql/generated/schema";
+import {} from "next";
 
-const Home: NextPage = () => {
-  const { data, loading, error } = useGetBlogsQuery({});
+const Home: PageGetBlogsComp = () => {
+  // const { data, loading, error } = useGetBlogsQuery({});
+  // let blogs = data?.blogs?.data;
+
+  const { data } = ssrGetBlogs.usePage();
   let blogs = data?.blogs?.data;
 
   return (
     <div className="container mx-auto my-0  max-w-[768px]  px-16  ">
       <Head>
         <title>Apex Blogs | Home</title>
+        <meta property="og:title" content="Hello" />
+        <meta property="og:description" content="Open Graph Description" />
       </Head>
       <div className="header-content mt-8">
         <HeaderContent category="" />
@@ -27,4 +35,8 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  return await ssrGetBlogs.getServerPage({}, ctx);
+};
+
+export default withApollo(Home);

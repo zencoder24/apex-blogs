@@ -1,6 +1,4 @@
-import { NextPage } from "next";
-import { NextRouter, useRouter } from "next/router";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Head from "next/head";
 import {
   Categories,
@@ -10,72 +8,46 @@ import {
   CommentForm,
 } from "../../components";
 import {
-  useGetBlogDetailQuery,
-  GetBlogDetailQuery,
   AuthorEntityResponse,
   Maybe,
   Blog,
 } from "../../graphql/generated/schema";
+import {
+  ssrGetBlogs,
+  ssrGetBlogDetail,
+  PageGetBlogDetailComp,
+} from "../../graphql/generated/page";
+import { withApollo } from "../../graphql/withApollo";
+import { GetServerSideProps, GetStaticPaths } from "next";
 
 import Comments from "../../components/Comments";
 import { NextSeo } from "next-seo";
+import { resizeImage } from "next/dist/server/image-optimizer";
 
-const BlogDetails: NextPage = () => {
-  const router: NextRouter = useRouter();
-  const slugQuery = String(router.query.slug);
-  const [blog, setBlog] = useState<GetBlogDetailQuery | undefined>(undefined);
-
-  const { data, loading, error } = useGetBlogDetailQuery({
-    variables: { slug: slugQuery },
-  });
-
-  useEffect(() => {
-    if (loading === false && data) {
-      setBlog(data);
-    }
-  }, [loading, data]);
-
-  //TODO: Fix Temporary Loading Message....
-  if (loading) return <h1>Loading....</h1>;
-
-  //TODO: Fix Temporary Error Message....
-  if (error) {
-    console.log(error);
-    return <h1>Error....</h1>;
-  }
-
+const BlogDetails: PageGetBlogDetailComp = (props) => {
   return (
     <div className=" container mx-auto mb-8 bg-light-neutral px-10 dark:bg-dark-neutral">
-      <NextSeo title="Blog page title" description="A short description" />
-      {/* <Head>
-        <title>Apex Blogs | {data?.blogs?.data[0]?.attributes?.title}</title>
-        <meta
-          property="og:title"
-          content={blog?.blogs?.data[0].attributes?.title}
-        />
-        <meta property="og:description" content="Open Graph Description" />
-        <meta
-          property="og:image"
-          content={
-            blog?.blogs?.data[0]?.attributes?.featureImage?.data?.attributes
-              ?.url
-          }
-        />
-        <meta
-          property="og:url"
-          content={`https://apex-blogs.vercel.app/blog/${blog?.blogs?.data[0]?.attributes?.slug}`}
-        />
-      </Head> */}
+      <NextSeo
+        title="Blog page title"
+        description="A short description"
+        openGraph={{
+          title: "Open Graph Title",
+          description: "Blah Blah Blah",
+        }}
+      />
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 ">
         <div className="col-span-1 lg:col-span-8">
-          <BlogDetail blog={data?.blogs?.data[0]?.attributes as Maybe<Blog>} />
+          <BlogDetail
+            blog={props?.data?.blogs?.data[0]?.attributes as Maybe<Blog>}
+          />
           <Author
             author={
-              data?.blogs?.data[0]?.attributes?.author as AuthorEntityResponse
+              props?.data?.blogs?.data[0]?.attributes
+                ?.author as AuthorEntityResponse
             }
           />
-          <CommentForm id={data?.blogs?.data[0]?.id} />
-          <Comments id={data?.blogs?.data[0]?.id} />
+          <CommentForm id={props?.data?.blogs?.data[0]?.id} />
+          <Comments id={props?.data?.blogs?.data[0]?.id} />
         </div>
         <div className="col-span-1 lg:col-span-4">
           <div className=" lgsticky relative top-8">
@@ -88,4 +60,44 @@ const BlogDetails: NextPage = () => {
   );
 };
 
-export default BlogDetails;
+export const getStaticProps: GetServerSideProps = async ({ params, req }) => {
+  const res = await ssrGetBlogDetail.getServerPage(
+    {
+      variables: { slug: params?.slug?.toString() || "" },
+    },
+    { req }
+  );
+
+  if (res.props.error) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return res;
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { props } = await ssrGetBlogs.getServerPage({}, { req: undefined });
+
+  const paths =
+    props?.data?.blogs?.data?.map((val: any) => ({
+      params: { slug: val.attributes.slug },
+    })) || [];
+
+  //   ((slug) => ({
+  //     params: { slug },
+  //   })
+  // );
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export default withApollo(
+  ssrGetBlogDetail.withPage((arg) => ({
+    variables: { slug: arg?.query?.slug?.toString() || "" },
+  }))(BlogDetails)
+);

@@ -16,6 +16,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@graphql-codegen/import-types-preset": "^2.2.3",
     "@types/markdown-it": "^12.2.3",
     "axios": "^0.27.2",
     "babel-plugin-inline-react-svg": "^2.0.1",
