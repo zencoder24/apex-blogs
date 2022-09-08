@@ -27,14 +27,27 @@ import { resizeImage } from "next/dist/server/image-optimizer";
 const BlogDetails: PageGetBlogDetailComp = (props) => {
   return (
     <div className=" container mx-auto mb-8 bg-light-neutral px-10 dark:bg-dark-neutral">
-      <NextSeo
-        title="Blog page title"
-        description="A short description"
-        openGraph={{
-          title: "Open Graph Title",
-          description: "Blah Blah Blah",
-        }}
-      />
+      <Head>
+        <title>
+          Apex Blogs | {props?.data?.blogs?.data[0]?.attributes?.title}
+        </title>
+        <meta
+          property="og:title"
+          content={props?.data?.blogs?.data[0].attributes?.title}
+        />
+        <meta property="og:description" content="Open Graph Description" />
+        <meta
+          property="og:image"
+          content={
+            props?.data?.blogs?.data[0]?.attributes?.featureImage?.data
+              ?.attributes?.url
+          }
+        />
+        <meta
+          property="og:url"
+          content={`https://apex-blogs.vercel.app/blog/${props?.data?.blogs?.data[0]?.attributes?.slug}`}
+        />
+      </Head>
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 ">
         <div className="col-span-1 lg:col-span-8">
           <BlogDetail
