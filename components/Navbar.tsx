@@ -39,15 +39,15 @@ const Navbar = () => {
   return (
     <nav className="mx-auto my-0 flex items-center justify-between py-4  px-4">
       <div className="dropdown relative mx-2 inline-block">
-        <a className="flex cursor-pointer items-center ">
-          <span className="text-xl font-semibold text-light-accent dark:text-dark-accent">
+        <a className="flex cursor-pointer items-center align-middle ">
+          <span className=" mr-2 text-xl font-semibold text-light-accent dark:text-dark-accent md:mr-0">
             <FontAwesomeIcon
               className="block text-light-accent dark:text-dark-accent md:hidden"
               icon={faBarsStaggered as IconProp}
             />
           </span>
 
-          <span className="mx-1 text-base font-semibold text-light-accent dark:text-dark-accent md:text-base">
+          <span className=" mx-1 hidden text-base font-semibold text-light-accent dark:text-dark-accent md:block md:text-base">
             Categories
           </span>
           <span className="text-xl font-semibold text-light-accent dark:text-dark-accent">
