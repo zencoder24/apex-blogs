@@ -31,19 +31,19 @@ const BlogDetail = ({ blog }: BlogDetailComp) => {
         <h1 className="mb-2 text-4xl font-extrabold text-light-neutral dark:text-dark-neutral ">
           {blog?.title}
         </h1>
-        <h2 className="mb-4 text-lg font-semibold italic text-light-neutral dark:text-dark-neutral">
+        <h2 className="mb-4 text-lg font-semibold italic text-light-neutral/70 dark:text-dark-neutral/50">
           {blog?.description}
         </h2>
         <div className="mb-4 flex w-full flex-col md:flex-row">
           <div className="mb-4 flex w-auto  items-center ">
-            <p className="mr-2 inline align-middle text-base text-light-neutral/70 dark:text-dark-neutral/70">
+            <p className="mr-2 inline align-middle text-base font-bold  text-light-neutral dark:text-dark-neutral">
               By:{" "}
               <span className="font-bold">
                 {blog?.author?.data?.attributes?.Name}
               </span>
             </p>
           </div>
-          <div className="flex font-semibold text-light-neutral/70 dark:text-dark-neutral/70 md:before:mr-2 md:before:content-['•']">
+          <div className="flex font-semibold text-light-neutral dark:text-dark-neutral md:before:mr-2 md:before:content-['•']">
             <p className="md:mr-1">Written On:&nbsp;</p>
             <span className="text-center">
               {moment(blog?.createdAt).format("MMM DD, YYYY")}
@@ -51,7 +51,7 @@ const BlogDetail = ({ blog }: BlogDetailComp) => {
           </div>
         </div>
 
-        <div className="prose text-light-neutral prose-h2:text-light-neutral/70 prose-a:font-bold prose-a:text-light-primary prose-blockquote:text-light-neutral dark:text-dark-neutral/70 dark:prose-h2:text-dark-neutral dark:prose-a:text-dark-secondary dark:prose-blockquote:text-dark-neutral">
+        <div className="prose text-light-neutral prose-headings:text-light-neutral prose-a:font-bold prose-a:text-light-primary prose-blockquote:text-light-neutral dark:text-dark-neutral/70 dark:prose-headings:text-dark-neutral dark:prose-h2:text-dark-neutral dark:prose-a:text-dark-secondary dark:prose-blockquote:text-dark-neutral">
           <ReactMarkdown components={MarkdownComponents}>
             {String(blog?.body)}
           </ReactMarkdown>
