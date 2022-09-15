@@ -4,8 +4,6 @@ import Head from "next/head";
 import React from "react";
 import { PageGetBlogsComp, ssrGetBlogs } from "../graphql/generated/page";
 import { withApollo } from "../graphql/withApollo";
-import { useGetBlogsQuery } from "../graphql/generated/schema";
-import {} from "next";
 
 const Home: PageGetBlogsComp = () => {
   // const { data, loading, error } = useGetBlogsQuery({});
