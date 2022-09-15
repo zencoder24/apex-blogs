@@ -3,7 +3,14 @@ import React from "react";
 import moment from "moment";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { MarkdownComponents } from "../services/MarkdownComponents";
-import { LinkedinShareButton, LinkedinIcon } from "next-share";
+import {
+  LinkedinShareButton,
+  LinkedinIcon,
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  TwitterShareButton,
+} from "next-share";
 import { Blog, Maybe } from "../graphql/generated/schema";
 
 interface BlogDetailComp {
@@ -49,14 +56,31 @@ const BlogDetail = ({ blog }: BlogDetailComp) => {
             {String(blog?.body)}
           </ReactMarkdown>
         </div>
-        <div className="share-blog">
-          <LinkedinShareButton
-            url={`https://apex-blogs.vercel.app/blog/${blog?.slug}`}
-            title={blog?.title}
-            summary={blog?.description as string}
-          >
-            <LinkedinIcon size={32} round />
-          </LinkedinShareButton>
+        <div className="share-blog mt-4 flex flex-row">
+          <p className="mr-2 text-lg font-bold text-light-neutral dark:text-dark-neutral">
+            Share Post:{" "}
+          </p>
+          <div className="flex flex-row space-x-2">
+            <LinkedinShareButton
+              url={`https://apex-blogs.vercel.app/blog/${blog?.slug}`}
+              title={blog?.title}
+              summary={blog?.description as string}
+            >
+              <LinkedinIcon size={32} round />
+            </LinkedinShareButton>
+            <FacebookShareButton
+              url={`https://apex-blogs.vercel.app/blog/${blog?.slug}`}
+              quote={blog?.description as string}
+            >
+              <FacebookIcon size={32} round />
+            </FacebookShareButton>
+            <TwitterShareButton
+              url={`https://apex-blogs.vercel.app/blog/${blog?.slug}`}
+              title={blog?.title}
+            >
+              <TwitterIcon size={32} round />
+            </TwitterShareButton>
+          </div>
         </div>
       </div>
     </div>
