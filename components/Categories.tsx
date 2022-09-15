@@ -1,7 +1,6 @@
 import React from "react";
 import {
   CategoryEntity,
-  GetCategoriesQuery,
   useGetCategoriesQuery,
 } from "../graphql/generated/schema";
 import { useState } from "react";

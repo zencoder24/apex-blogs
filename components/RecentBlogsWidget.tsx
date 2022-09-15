@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import moment from "moment";
 import Link from "next/link";
-import {
-  BlogEntity,
-  GetRecentBlogsQuery,
-  Maybe,
-  useGetRecentBlogsQuery,
-} from "../graphql/generated/schema";
+import { useGetRecentBlogsQuery } from "../graphql/generated/schema";
 
 const RecentBlogsWidget = () => {
   //Not sure why BlogEntity can be passed as a Type. Just using 'any' because it works

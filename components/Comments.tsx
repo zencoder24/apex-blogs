@@ -2,12 +2,8 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import {
   useGetCommentsQuery,
-  CommentNested,
-  Maybe,
-  GetCommentsQueryHookResult,
   GetCommentsQuery,
 } from "../graphql/generated/schema";
-import { faHourglass1 } from "@fortawesome/free-solid-svg-icons";
 
 interface CommentComp {
   id: any;

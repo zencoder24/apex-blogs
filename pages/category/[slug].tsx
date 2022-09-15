@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { type } from "os";
-import React, { useState } from "react";
+import React from "react";
 import { HeaderContent, BlogCard } from "../../components";
 import { useGetCategoryBlogsQuery } from "../../graphql/generated/schema";
 

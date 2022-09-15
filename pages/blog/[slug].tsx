@@ -21,8 +21,6 @@ import { withApollo } from "../../graphql/withApollo";
 import { GetServerSideProps, GetStaticPaths } from "next";
 
 import Comments from "../../components/Comments";
-import { NextSeo } from "next-seo";
-import { resizeImage } from "next/dist/server/image-optimizer";
 
 const BlogDetails: PageGetBlogDetailComp = (props) => {
   return (
