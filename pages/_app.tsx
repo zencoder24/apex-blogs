@@ -8,16 +8,6 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ThemeProvider } from "next-themes";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
   //Apollo/Graphql
   const client = new ApolloClient({
     uri: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_ENDPOINT,

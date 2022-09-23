@@ -23,17 +23,24 @@ import { GetServerSideProps, GetStaticPaths } from "next";
 import Comments from "../../components/Comments";
 
 const BlogDetails: PageGetBlogDetailComp = (props) => {
+  const title = `Apex Blogs | ${
+    props?.data?.blogs?.data[0]?.attributes?.title as string
+  }`;
   return (
     <div className=" container mx-auto mb-8 bg-light-neutral px-10 dark:bg-dark-neutral">
       <Head>
-        <title>
-          Apex Blogs | {props?.data?.blogs?.data[0]?.attributes?.title}
-        </title>
+        <title>{title}</title>
         <meta
           property="og:title"
           content={props?.data?.blogs?.data[0].attributes?.title}
         />
-        <meta property="og:description" content="Open Graph Description" />
+        <meta
+          property="og:description"
+          content={
+            props?.data?.blogs?.data[0].attributes?.description as string
+          }
+        />
+        <meta property="og:type" content="article" />
         <meta
           property="og:image"
           content={
@@ -45,6 +52,24 @@ const BlogDetails: PageGetBlogDetailComp = (props) => {
           property="og:url"
           content={`https://apex-blogs.vercel.app/blog/${props?.data?.blogs?.data[0]?.attributes?.slug}`}
         />
+        <meta
+          name="twitter:title"
+          content={props?.data?.blogs?.data[0].attributes?.title}
+        />
+        <meta
+          name="twitter:description"
+          content={
+            props?.data?.blogs?.data[0].attributes?.description as string
+          }
+        />
+        <meta
+          name="twitter:image"
+          content={
+            props?.data?.blogs?.data[0]?.attributes?.featureImage?.data
+              ?.attributes?.url
+          }
+        />
+        <meta name="twitter:card" content="summary" />
       </Head>
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 ">
         <div className="col-span-1 lg:col-span-8">
