@@ -62,20 +62,20 @@ const BlogDetail = ({ blog }: BlogDetailComp) => {
           </p>
           <div className="flex flex-row space-x-2">
             <LinkedinShareButton
-              url={`https://apex-blogs.vercel.app/blog/${blog?.slug}`}
+              url={`https://blogs.rodthedev.com/blog/${blog?.slug}`}
               title={blog?.title}
               summary={blog?.description as string}
             >
               <LinkedinIcon size={32} round />
             </LinkedinShareButton>
             <FacebookShareButton
-              url={`https://apex-blogs.vercel.app/blog/${blog?.slug}`}
+              url={`https://blogs.rodthedev.com/blog/${blog?.slug}`}
               quote={blog?.description as string}
             >
               <FacebookIcon size={32} round />
             </FacebookShareButton>
             <TwitterShareButton
-              url={`https://apex-blogs.vercel.app/blog/${blog?.slug}`}
+              url={`https://blogs.rodthedev.com/blog/${blog?.slug}`}
               title={blog?.title}
             >
               <TwitterIcon size={32} round />

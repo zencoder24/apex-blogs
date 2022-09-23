@@ -50,7 +50,7 @@ const BlogDetails: PageGetBlogDetailComp = (props) => {
         />
         <meta
           property="og:url"
-          content={`https://apex-blogs.vercel.app/blog/${props?.data?.blogs?.data[0]?.attributes?.slug}`}
+          content={`https://blogs.rodthedev.com/blog/${props?.data?.blogs?.data[0]?.attributes?.slug}`}
         />
         <meta
           name="twitter:title"
