@@ -20,11 +20,11 @@ export const MarkdownComponents: object = {
       const caption = metastring?.match(/{caption: (.*?)}/)?.pop();
 
       return (
-        <div className="postImgWrapper">
+        <div className="postImgWrapper h-full w-full">
           <Image
             src={image.properties.src}
             width={width}
-            height={height}
+            height={1000}
             className="postImg"
             alt={alt}
             priority={isPriority}

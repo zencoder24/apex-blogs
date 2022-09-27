@@ -20,7 +20,7 @@ const BlogCard = ({ blog }: BlogCardComp) => {
           {blog?.attributes?.title}
         </Link>
       </h1>
-      <div className=" my-2 flex space-x-2 text-light-accent dark:text-dark-accent ">
+      <div className=" my-2  flex  space-x-2 text-light-accent dark:text-dark-accent ">
         <div className="text-sm font-medium after:pl-2 after:content-['•']">
           <FontAwesomeIcon icon={faCalendarAlt} className="text-red-600 " />
           <span className="ml-2">
