@@ -41,6 +41,9 @@ const CommentForm = ({ id }: CommentFormComp) => {
           setShowSuccessMessage(false);
         }, 3000);
         formRef?.current?.reset();
+        name.value = "";
+        email.value = "";
+        comment.value = "";
       },
     });
   };
