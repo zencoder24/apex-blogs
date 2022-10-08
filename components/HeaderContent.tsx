@@ -11,7 +11,7 @@ const HeaderContent = ({ category }: HeaderContentComp) => {
         Apex-Blogs {category}
       </h1>
       <p className=" italic text-light-primary dark:text-dark-primary">
-        A series of posts of concepts, best practices, and life lesson learned
+        A series of posts of concepts, best practices, and life lessons learned
         while coding.
       </p>
     </div>

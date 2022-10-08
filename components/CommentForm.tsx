@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useId } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useCreateCommentMutation } from "../graphql/generated/schema";
 
 interface CommentFormComp {
@@ -15,8 +15,6 @@ const CommentForm = ({ id }: CommentFormComp) => {
 
   const [addComment] = useCreateCommentMutation();
 
-  const author_id_rand = useId();
-
   const handleCommentSubmission = () => {
     setError(false);
 
@@ -32,7 +30,7 @@ const CommentForm = ({ id }: CommentFormComp) => {
     addComment({
       variables: {
         blog_relation: "api::blog.blog:" + id,
-        author_id: Math.floor(Math.random() * 9000), // <--- Quick fix but not the ultimate solution for generating an id
+        author_id: Math.floor(Math.random() * 1000000), // <--- Quick fix but not the ultimate solution for generating an id
         author_name: name.value,
         author_email: email.value,
         content: comment.value,

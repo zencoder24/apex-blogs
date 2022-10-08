@@ -24,9 +24,11 @@ const Home: PageGetBlogsComp = () => {
       </div>
       <div className=" ">
         <div className="mt-24">
-          {blogs?.map((blog: any) => (
-            <BlogCard blog={blog} key={blog.attributes.title} />
-          ))}
+          {blogs
+            ?.map((blog: any) => (
+              <BlogCard blog={blog} key={blog.attributes.title} />
+            ))
+            .reverse()}
         </div>
       </div>
     </div>
