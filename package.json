@@ -34,6 +34,7 @@
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.3",
     "react-multi-carousel": "^2.8.2",
+    "react-syntax-highlighter": "^15.5.0",
     "reading-time-estimator": "^1.5.3",
     "theme-change": "^2.1.0"
   },
@@ -48,6 +49,7 @@
     "@types/node": "18.0.4",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
+    "@types/react-syntax-highlighter": "^15.5.5",
     "autoprefixer": "^10.4.7",
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.2",
