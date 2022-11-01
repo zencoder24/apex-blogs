@@ -51,7 +51,7 @@ const BlogDetail = ({ blog }: BlogDetailComp) => {
           </div>
         </div>
 
-        <div className="prose text-light-neutral prose-headings:text-light-neutral  prose-a:font-bold prose-a:text-light-primary prose-blockquote:text-light-neutral dark:text-dark-neutral/70 dark:prose-headings:text-dark-neutral dark:prose-h2:text-dark-neutral dark:prose-a:text-dark-secondary dark:prose-blockquote:text-dark-neutral">
+        <div className="prose text-light-neutral prose-headings:text-light-neutral prose-a:font-bold prose-a:text-light-primary  prose-blockquote:text-light-neutral prose-strong:text-light-neutral dark:text-dark-neutral/70 dark:prose-headings:text-dark-neutral dark:prose-h2:text-dark-neutral dark:prose-a:text-dark-secondary dark:prose-blockquote:text-dark-neutral dark:prose-strong:text-dark-neutral">
           <ReactMarkdown components={MarkdownComponents}>
             {String(blog?.body)}
           </ReactMarkdown>

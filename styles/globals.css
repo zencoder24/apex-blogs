@@ -51,3 +51,7 @@ a {
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+span.linenumber {
+  display: none !important ;
+}
