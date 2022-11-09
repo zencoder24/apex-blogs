@@ -7,7 +7,7 @@ import {
   faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import { AuthorEntityResponse, Maybe } from "../graphql/generated/schema";
+import { AuthorEntityResponse } from "../graphql/generated/schema";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface AuthorComp {

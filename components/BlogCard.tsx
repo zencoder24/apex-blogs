@@ -1,10 +1,10 @@
 import React from "react";
 import moment from "moment";
 import Link from "next/link";
+import { BlogEntity } from "../graphql/generated/schema";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { readingTime } from "reading-time-estimator";
-import { BlogEntity } from "../graphql/generated/schema";
 
 interface BlogCardComp {
   blog: BlogEntity | undefined;
@@ -12,7 +12,6 @@ interface BlogCardComp {
 
 const BlogCard = ({ blog }: BlogCardComp) => {
   const result = readingTime(String(blog?.attributes?.body));
-
   return (
     <article className="mb-24 p-0 hover:border-l-4  hover:border-light-primary hover:pl-4 hover:dark:border-dark-secondary">
       <h1 className=" cursor-pointer text-left text-3xl font-bold text-light-accent transition duration-500 hover:text-light-secondary dark:text-dark-accent hover:dark:text-dark-secondary ">

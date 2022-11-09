@@ -54,6 +54,7 @@ const Comments = ({ id }: CommentComp) => {
                           <span className="text-lg font-bold">
                             {comment?.author?.name[0]}
                           </span>
+                          t
                         </div>
                         <span className=" font-semibold text-light-primary  dark:text-dark-secondary">
                           {comment?.author?.name}

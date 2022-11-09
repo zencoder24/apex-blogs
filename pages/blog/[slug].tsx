@@ -69,7 +69,8 @@ const BlogDetails: PageGetBlogDetailComp = (props) => {
               ?.attributes?.url
           }
         />
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@RoddTheDev" />
       </Head>
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 ">
         <div className="col-span-1 lg:col-span-8">
